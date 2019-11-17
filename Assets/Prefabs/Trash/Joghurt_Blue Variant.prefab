@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000013929301108, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
       propertyPath: m_Name
-      value: Joghurt_Blue
+      value: Joghurt_Blue Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4000010320231238, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,6 +54,18 @@ PrefabInstance:
     - target: {fileID: 4000010320231238, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010320231238, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010320231238, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010320231238, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45dd85a422d0ed4a907ac22a4b6e546, type: 3}
