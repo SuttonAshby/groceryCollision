@@ -31,7 +31,10 @@ public class Cart : MonoBehaviour
         {
             case MoveState.Inside:
                 moveState = MoveState.MovingOut;
-                transform.DOMove(CartMoveDist, 1).SetRelative(true).OnComplete(() => moveState = MoveState.Outside).OnRewind(() => moveState = MoveState.Inside) ;
+                transform.DOMove(CartMoveDist, 1)
+                    .SetRelative(true)
+                    .OnComplete(() => moveState = MoveState.Outside)
+                    .OnRewind(() => moveState = MoveState.Inside) ;
                 break;
             case MoveState.MovingIn:
                 moveState = MoveState.MovingOut;
@@ -46,7 +49,10 @@ public class Cart : MonoBehaviour
         {
             case MoveState.Outside:
                 moveState = MoveState.MovingIn;
-                transform.DOMove(-CartMoveDist, 1).SetRelative(true).OnComplete(() => moveState = MoveState.Inside).OnRewind(() => moveState = MoveState.Outside);
+                transform.DOMove(-CartMoveDist, 1)
+                    .SetRelative(true)
+                    .OnComplete(() => moveState = MoveState.Inside)
+                    .OnRewind(() => moveState = MoveState.Outside);
                 break;
             case MoveState.MovingOut:
                 moveState = MoveState.MovingIn;
@@ -61,7 +67,10 @@ public class Cart : MonoBehaviour
         if (!Moving)
         {
             Moving = true;
-            transform.DOMove(-CartMoveDist, 1).SetLoops(2, LoopType.Yoyo).SetRelative(true).OnComplete(() => Moving = false);
+            transform.DOMove(-CartMoveDist, 1)
+                .SetLoops(2, LoopType.Yoyo)
+                .SetRelative(true)
+                .OnComplete(() => Moving = false);
         }
     }
 
