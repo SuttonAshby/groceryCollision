@@ -29,7 +29,7 @@ public class Manager : MonoBehaviour
         print("Got " + itemName);
         if (this.cart1State.HasItem(itemName))
         {
-            this.cart1State.ItemDone(itemName);
+            this.cart1State.SetItemDone(itemName);
             if (this.cart1State.IsTreeDone())
             {
                 print("Game Done");
