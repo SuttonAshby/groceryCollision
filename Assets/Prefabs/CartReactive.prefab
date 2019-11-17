@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437272109278277928}
   m_Layer: 0
-  m_Name: Cart1
+  m_Name: CartReactive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 5867388000964789051}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -3, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 1003245006413948493}
   m_Father: {fileID: 0}
@@ -259,3 +259,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotBlocker: {fileID: 2471573885125979482}
   CartMoveDist: {x: -1, y: 0, z: 0}
+  CartMoveTime: 0

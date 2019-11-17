@@ -6,6 +6,7 @@ public class Cart : MonoBehaviour
     public Collider shotBlocker;
     public Vector3 CartMoveDist;
     public float CartMoveTime;
+    public float ItemShrinkFactor;
 
     private Manager manager;
     private bool Moving;
@@ -90,7 +91,7 @@ public class Cart : MonoBehaviour
         if (moveState == MoveState.Inside)
         {
             manager.GotItem(this, go.name);
-            go.transform.localScale = go.transform.localScale / 2f;
+            go.transform.localScale = go.transform.localScale / ItemShrinkFactor;
         }
     }
 }

@@ -126,7 +126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-81802
+  m_Name: pb_Mesh-368622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -394,7 +394,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -420,7 +420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936020192}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2, y: 4.5, z: -2}
+  m_LocalPosition: {x: -2, y: 7.997, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -615,6 +615,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4647022077542182438, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647022077542182438, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647022077542182438, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622444590385, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: ItemShrinkFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622444590385, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: CartMoveTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622303743326, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: ItemShrinkFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622303743326, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: CartMoveTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45bc682591e2ef4da67c07c5ac3dfee, type: 3}
 --- !u!1 &1638822482
@@ -677,6 +727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 65fc44a07f395e64997e68dfbbdc0951, type: 2}
+  player1Recipes: {fileID: 0}
+  player2Recipes: {fileID: 0}
 --- !u!4 &1665973224
 Transform:
   m_ObjectHideFlags: 0
