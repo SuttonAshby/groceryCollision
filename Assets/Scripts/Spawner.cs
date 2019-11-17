@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        SpawnOffList();
         SpawnTrash();
     }
 
