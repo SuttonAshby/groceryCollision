@@ -522,6 +522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccefabc3bd832fe4da9c0c56a0823e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotBlocker: {fileID: 0}
+  CartMoveDist: {x: 0, y: 0, z: 0}
+  CartMoveTime: 0
+  ItemShrinkFactor: 0
 --- !u!1 &1762665853
 GameObject:
   m_ObjectHideFlags: 0
