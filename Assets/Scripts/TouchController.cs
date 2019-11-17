@@ -126,14 +126,8 @@ public class TouchController : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(touch.position);
 
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            return hit.rigidbody.gameObject == go;
-        }
-        else
-        {
-            return false;
-        }
+        return Physics.Raycast(ray, out hit) &&
+            hit.rigidbody.gameObject == go;
     }
 
     private Vector3 ScreenToWorldPoint(Vector2 screenPos)
