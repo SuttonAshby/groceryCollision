@@ -68,7 +68,7 @@ public class RecipesEditor : Editor
         for (var i = items.Count - 1; i >= 0; i--)
         {
             var item = items[i];
-            DrawItem(item, null, 1);
+            DrawItem(item, null, null, 1);
 
             GUILayout.Space(12);
         }
@@ -107,7 +107,7 @@ public class RecipesEditor : Editor
         _dirty = true;
     }
 
-    private void DrawItem(ItemTree.Item item, ItemTree.Item parent, int depth)
+    private void DrawItem(ItemTree.Item item, ItemTree.Item parent, ItemTree.Options options, int depth)
     {
         if (depth > 5) return;
         EditorGUI.indentLevel = 2 * (depth - 1);
@@ -122,7 +122,7 @@ public class RecipesEditor : Editor
                 if (prevItemName != item.Name) _dirty = true;
             }
             else EditorGUILayout.LabelField(item.Name);
-            // if (GUILayout.Button("-")) RemoveChild(parent, item);
+            if (GUILayout.Button("-")) RemoveChild(parent, options, item);
             GUILayout.EndHorizontal();
         }
         else
@@ -132,17 +132,20 @@ public class RecipesEditor : Editor
         for (var i = item.Options.Count - 1; i >= 0; i--)
         {
             EditorGUI.indentLevel = 2 * depth;
+            var option = item.Options[i];
             if (item.Options.Count > 1)
             {
+                GUILayout.BeginHorizontal();
                 EditorGUI.indentLevel = 2 * depth - 1;
                 EditorGUILayout.LabelField(string.Format("Option {0}", i + 1));
+                if (GUILayout.Button("-")) RemoveOptions(item, option);
+                GUILayout.EndHorizontal();
             }
-            var option = item.Options[i];
             for (var j = option.Items.Count - 1; j >= 0; j--)
             {
                 var childName = option.Items[j].Name;
                 var child = _recipes.itemTree.GetItem(childName);
-                if (child != null) DrawItem(child, item, depth + 1);
+                if (child != null) DrawItem(child, item, option, depth + 1);
             }
 
             if (depth == 1)
@@ -154,7 +157,6 @@ public class RecipesEditor : Editor
                 if (GUILayout.Button("+")) AddChild(item, option, _itemNames[_selectedItems[item.Name]]);
                 GUILayout.EndHorizontal();
             }
-            // if (i > 0) EditorGUILayout.LabelField(" - OR - ");
         }
 
         if (depth == 1)
@@ -242,7 +244,7 @@ public class RecipesEditor : Editor
         _dirty = true;
     }
 
-    private void RemoveChild(ItemTree.Item parent, ItemTree.Item child)
+    private void RemoveChild(ItemTree.Item parent, ItemTree.Options options, ItemTree.Item child)
     {
         if (parent == null)
         {
@@ -253,8 +255,16 @@ public class RecipesEditor : Editor
         }
         else
         {
-            // parent.RemoveOption(child);
+            if (options.Items.Contains(child)) options.Items.Remove(child);
+            if (options.Items.Count == 0) parent.Options.Remove(options);
         }
+        _dirty = true;
+    }
+
+    private void RemoveOptions(ItemTree.Item item, ItemTree.Options options)
+    {
+        if (!item.Options.Contains(options)) return;
+        item.Options.Remove(options);
         _dirty = true;
     }
 
