@@ -56,6 +56,15 @@ public class Recipes : ScriptableObject
         });
     }
 
+    public bool AreRecipesComplete()
+    {
+        foreach (var recipe in recipeRoots)
+        {
+            if (!itemTree.IsItemDone(recipe.Name)) return false;
+        }
+        return true;
+    }
+
     public string[] GetAllIngredientNames(bool onlyWithAssets)
     {
         var ingredients = GetAllIngredients(onlyWithAssets);

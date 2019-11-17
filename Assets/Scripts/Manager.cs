@@ -2,9 +2,8 @@
 
 public class Manager : MonoBehaviour
 {
-    public ItemTree items;
-    public string cart1ListItem;
-    public string cart2ListItem;
+    public Recipes player1Recipes;
+    public Recipes player2Recipes;
     private Cart cart1;
     private Cart cart2;
     // Start is called before the first frame update
@@ -21,13 +20,21 @@ public class Manager : MonoBehaviour
     public void GotItem(Cart cart, string itemName)
     {
         print("Got " + itemName);
-        if (cart == cart1 && items.HasItem(itemName))
+        if (cart == cart1 && player1Recipes.itemTree.HasItem(itemName))
         {
-            // this.cart1List.SetItemDone(itemName);
-            // if (this.cart1List.IsTreeDone())
-            // {
-            //     print("Game Done");
-            // }
+            player1Recipes.itemTree.SetItemDone(itemName);
+            if (player1Recipes.AreRecipesComplete())
+            {
+                print("Player 1 Won");
+            }
+        }
+        else if (cart == cart2 && player2Recipes.itemTree.HasItem(itemName))
+        {
+            player2Recipes.itemTree.SetItemDone(itemName);
+            if (player2Recipes.AreRecipesComplete())
+            {
+                print("Player 2 Won");
+            }
         }
         else
         {
