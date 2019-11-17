@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public SpawnManagerScriptableObject trashData;
     public Recipes player1Recipes;
     public Recipes player2Recipes;
+    public PlayerItemPrefabs playerItemPrefabs;
 
     void Start()
     {
@@ -41,7 +42,8 @@ public class Spawner : MonoBehaviour
             if(spawnPos == 0){
                 spawnPos =  gameObject.transform.childCount;
             }
-            //TO BE CONTINUED...
+            Instantiate(item, gameObject.transform.GetChild(spawnPos - 1).position, Quaternion.identity);
+            spawnPos--;
         }
     }
 
@@ -72,7 +74,14 @@ public class Spawner : MonoBehaviour
         foreach (var item in items) Debug.Log(item);
     }
 
-    private string[] GetPlayerSpawnItems(float includeChance = 1f)
+    private GameObject[] GetPlayerSpawnItems(float includeChance = 1f)
+    {
+        var names = GetPlayerSpawnItemNames(includeChance);
+        var prefabs = playerItemPrefabs.GetPrefabsForIds(names);
+        return prefabs;
+    }
+
+    private string[] GetPlayerSpawnItemNames(float includeChance = 1f)
     {
         var player1Items = player1Recipes.GetAllIngredientNames(true);
         var player2Items = player2Recipes.GetAllIngredientNames(true);

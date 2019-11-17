@@ -51,6 +51,7 @@ MonoBehaviour:
   trashData: {fileID: 11400000, guid: 60b07061ca27e7b42b512aa22b512a2e, type: 2}
   player1Recipes: {fileID: 11400000, guid: a05b217283a674944b4b3bc702115fd1, type: 2}
   player2Recipes: {fileID: 11400000, guid: 91652983c995f438bb9213c3f62b47af, type: 2}
+  playerItemPrefabs: {fileID: 11400000, guid: 60caefe4c3cec4f8ba6c5f6069311372, type: 2}
 --- !u!1 &3897682596079825789
 GameObject:
   m_ObjectHideFlags: 0
