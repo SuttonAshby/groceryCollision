@@ -707,6 +707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 65fc44a07f395e64997e68dfbbdc0951, type: 2}
+  player1Recipes: {fileID: 0}
+  player2Recipes: {fileID: 0}
 --- !u!4 &1665973224
 Transform:
   m_ObjectHideFlags: 0
