@@ -1,82 +1,119 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
 public class ItemTree
 {
+    [System.Serializable]
     public class Item
     {
-        public string Name { get; }
+        [SerializeField]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
         public bool Done { get; private set; }
+        [SerializeField]
+        private List<Item> _children;
+        public List<Item> Children { get => _children; }
 
-        public Item Parent { get; private set; }
-        private List<Item> Children { get; }
-        private int ChildrenRemaining;
-
-        public Item(string name, Item parent)
+        public Item(string name)
         {
-            this.Name = name;
-            this.Parent = parent;
-            this.Children = new List<Item>();
-            this.ChildrenRemaining = 0;
+            _name = name;
+            _children = new List<Item>();
         }
 
         public void AddChild(Item other)
         {
-            other.Parent = this;
             this.Children.Add(other);
-            this.ChildrenRemaining++;
+        }
+
+        public void RemoveChild(Item other)
+        {
+            if (!Children.Contains(other)) return;
+            Children.Remove(other);
         }
 
         public void SetDone()
         {
             this.Done = true;
-            if(this.Parent != null) this.Parent.ChildDone();
         }
 
-        public void ChildDone()
-        {
-            if (Done) return;
-            ChildrenRemaining--;
-            if(ChildrenRemaining <= 0) this.SetDone();
-        }
     }
 
-    private Item Root;
-    private Dictionary<string, Item> itemDict;
-
+    public Item Root;
+    [SerializeField]
+    private List<Item> items;
+    public List<Item> Items { get => items; }
     public ItemTree()
     {
-        this.Root = new Item("root", null);
-        this.itemDict = new Dictionary<string, Item>() { { "root", this.Root } };
+        this.Root = new Item("root");
+        this.items = new List<Item>() { this.Root };
     }
 
-    public bool Append(string parent, string child)
+    public bool AppendToRoot(string childName)
     {
-        if(this.itemDict.TryGetValue(parent, out Item par))
-        {
-            Item ret = new Item(child, null);
-            par.AddChild(ret);
-            itemDict.Add(child, ret);
-            return true;
-        }
-        return false;
+        return Append(Root, childName);
+    }
+
+    public bool Append(string parentName, string childName)
+    {
+        var parent = GetItem(parentName);
+        return Append(parent, childName);
+    }
+
+    public bool Append(Item parent, string childName)
+    {
+        if (parent == null) return false;
+        Item child = new Item(childName);
+        parent.AddChild(child);
+        if (!HasItem(childName)) Items.Add(child);
+        return true;
+    }
+
+    public void RemoveFromRoot(Item item)
+    {
+        if (!HasItem(item.Name)) return;
+        Root.RemoveChild(item);
+        Items.Remove(item);
     }
 
     public bool HasItem(string itemName)
     {
-        return this.itemDict.ContainsKey(itemName);
+        var item = this.GetItem(itemName);
+        return item != null;
     }
 
-    public bool ItemDone(string itemName)
+    public Item GetItem(string itemName)
     {
-        if(this.itemDict.TryGetValue(itemName, out Item res))
+        if (string.IsNullOrEmpty(itemName)) return null;
+        foreach (var item in Items)
         {
-            res.SetDone();
-            return true;
+            if (item.Name == itemName) return item;
         }
-        return false;
+        return null;
+    }
+
+    public bool SetItemDone(string itemName)
+    {
+        var item = GetItem(itemName);
+        if (item == null) return false;
+        item.SetDone();
+        return true;
+    }
+
+    public bool IsItemDone(string itemName)
+    {
+        var item = GetItem(itemName);
+        if (item == null) return false;
+        if (!item.Done) return false;
+        foreach (var child in item.Children)
+        {
+            if (!IsItemDone(child.Name)) return false;
+        }
+        return true;
     }
 
     public bool IsTreeDone()
     {
-        return Root.Done;
+        return IsItemDone(Root.Name);
     }
 }
