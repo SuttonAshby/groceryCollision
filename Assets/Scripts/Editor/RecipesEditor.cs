@@ -24,6 +24,9 @@ public class RecipesEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+        var header = new GUIStyle(EditorStyles.largeLabel);
+        header.fontSize = 15;
+        header.fontStyle = FontStyle.Bold;
 
         if (_recipes.itemTree == null || _recipes.itemTree.Items.Count <= 1)
         {
@@ -37,13 +40,13 @@ public class RecipesEditor : Editor
         var items = _recipes.itemTree.Items;
         _itemNames = items.Where((i) => i.Name != "root").Select((i) => i.Name).ToArray();
 
-        EditorGUILayout.LabelField("Recipes", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Recipes", header, GUILayout.Height(24));
         if (_recipes.recipeRoots != null)
         {
             for (var i = _recipes.recipeRoots.Length - 1; i >= 0; i--)
             {
                 GUILayout.BeginHorizontal();
-                EditorGUILayout.TextField(_recipes.recipeRoots[i].Name);
+                EditorGUILayout.LabelField(_recipes.recipeRoots[i].Name);
                 if (GUILayout.Button("-")) RemoveRecipe(i);
                 GUILayout.EndHorizontal();
             }
@@ -55,7 +58,7 @@ public class RecipesEditor : Editor
         GUILayout.EndHorizontal();
 
         GUILayout.Space(28);
-        EditorGUILayout.LabelField("Items", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Items", header, GUILayout.Height(24));
 
         GUILayout.BeginHorizontal();
         _itemToAdd = EditorGUILayout.TextField("", _itemToAdd);
@@ -108,7 +111,13 @@ public class RecipesEditor : Editor
         if (depth == 2 || depth == 1)
         {
             GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(item.Name);
+            if (depth == 1)
+            {
+                var prevItemName = item.Name;
+                item.Name = EditorGUILayout.TextField(item.Name);
+                if (prevItemName != item.Name) _dirty = true;
+            }
+            else EditorGUILayout.LabelField(item.Name);
             if (GUILayout.Button("-")) RemoveChild(parent, item);
             GUILayout.EndHorizontal();
         }
@@ -119,9 +128,9 @@ public class RecipesEditor : Editor
         EditorGUI.indentLevel = 2 * depth;
         for (var i = item.Children.Count - 1; i >= 0; i--)
         {
-            var childName = item.Children[i];
+            var childName = item.Children[i].Name;
             var child = _recipes.itemTree.GetItem(childName);
-            DrawItem(child, item, depth + 1);
+            if (child != null) DrawItem(child, item, depth + 1);
         }
 
         if (depth == 1)
@@ -172,7 +181,7 @@ public class RecipesEditor : Editor
             return;
         }
         var child = _recipes.itemTree.GetItem(name);
-        if (item.Children.Contains(child.Name))
+        if (item.Children.Contains(child))
         {
             Debug.LogError("child already added");
             return;

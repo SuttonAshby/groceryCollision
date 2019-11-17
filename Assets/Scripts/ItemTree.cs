@@ -9,27 +9,27 @@ public class ItemTree
     {
         [SerializeField]
         private string _name;
-        public string Name { get => _name; }
+        public string Name { get => _name; set => _name = value; }
         public bool Done { get; private set; }
         [SerializeField]
-        private List<string> _children;
-        public List<string> Children { get => _children; }
+        private List<Item> _children;
+        public List<Item> Children { get => _children; }
 
         public Item(string name)
         {
             _name = name;
-            _children = new List<string>();
+            _children = new List<Item>();
         }
 
         public void AddChild(Item other)
         {
-            this.Children.Add(other.Name);
+            this.Children.Add(other);
         }
 
         public void RemoveChild(Item other)
         {
-            if (!Children.Contains(other.Name)) return;
-            Children.Remove(other.Name);
+            if (!Children.Contains(other)) return;
+            Children.Remove(other);
         }
 
         public void SetDone()
@@ -107,7 +107,7 @@ public class ItemTree
         if (!item.Done) return false;
         foreach (var child in item.Children)
         {
-            if (!IsItemDone(child)) return false;
+            if (!IsItemDone(child.Name)) return false;
         }
         return true;
     }
