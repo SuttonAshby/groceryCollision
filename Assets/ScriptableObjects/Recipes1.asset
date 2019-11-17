@@ -14,9 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeRoots: []
   itemTree:
-    Root:
-      _name: root
-      _children: []
     items:
-    - _name: root
-      _children: []
+    - _name: Flour
+      _options: []
+    - _name: Butter
+      _options: []
+    - _name: Pie Crust
+      _options:
+      - Items:
+        - _name: donkey
+          _options: []
+        - _name: Flour
+          _options: []
+        - _name: Butter
+          _options: []
+    - _name: Apples
+      _options: []
+    - _name: Sugar
+      _options: []
+    - _name: Apple Pie
+      _options:
+      - Items:
+        - _name: Pie Crust
+          _options:
+          - Items:
+            - _name: donkey
+              _options: []
+            - _name: Flour
+              _options: []
+            - _name: Butter
+              _options: []
+        - _name: Apples
+          _options: []
+        - _name: Sugar
+          _options: []
+    - _name: Peaches
+      _options: []

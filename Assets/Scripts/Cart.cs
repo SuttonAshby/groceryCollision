@@ -79,7 +79,7 @@ public class Cart : MonoBehaviour
         string otherName = other.gameObject.name;
         if (other.attachedRigidbody != null)
         {
-            manager.GotItem(otherName);
+            manager.GotItem(this, otherName);
             Destroy(other.gameObject);
         }
     }

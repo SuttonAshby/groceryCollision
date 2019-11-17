@@ -2,20 +2,14 @@
 
 public class Manager : MonoBehaviour
 {
-    private ItemTree cart1State;
+    public ItemTree items;
+    public string cart1ListItem;
+    public string cart2ListItem;
     private Cart cart1;
     private Cart cart2;
     // Start is called before the first frame update
     void Start()
     {
-        cart1State = new ItemTree();
-        cart1State.Append("root", "ApplePie");
-        cart1State.Append("ApplePie", "Apples");
-        cart1State.Append("ApplePie", "Sugar");
-        cart1State.Append("ApplePie", "Crust");
-        cart1State.Append("Crust", "Milk");
-        cart1State.Append("Crust", "Flour");
-
         Cart[] carts = FindObjectsOfType<Cart>();
         foreach (Cart c in carts)
         {
@@ -24,16 +18,16 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void GotItem(string itemName)
+    public void GotItem(Cart cart, string itemName)
     {
         print("Got " + itemName);
-        if (this.cart1State.HasItem(itemName))
+        if (cart == cart1 && items.HasItem(itemName))
         {
-            this.cart1State.SetItemDone(itemName);
-            if (this.cart1State.IsTreeDone())
-            {
-                print("Game Done");
-            }
+            // this.cart1List.SetItemDone(itemName);
+            // if (this.cart1List.IsTreeDone())
+            // {
+            //     print("Game Done");
+            // }
         }
         else
         {
