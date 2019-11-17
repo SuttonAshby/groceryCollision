@@ -3,6 +3,8 @@
 public class Manager : MonoBehaviour
 {
     private ItemTree cart1State;
+    private Cart cart1;
+    private Cart cart2;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,24 +15,13 @@ public class Manager : MonoBehaviour
         cart1State.Append("ApplePie", "Crust");
         cart1State.Append("Crust", "Milk");
         cart1State.Append("Crust", "Flour");
-    }
 
-    public void GotItem(ItemTree tree, string itemName)
-    {
-        print("Got " + itemName);
-        if (tree.HasItem(itemName))
+        Cart[] carts = FindObjectsOfType<Cart>();
+        foreach (Cart c in carts)
         {
-            tree.ItemDone(itemName);
-            if (tree.IsTreeDone())
-            {
-                print("Game Done");
-            }
+            if (c.name == "Cart1") cart1 = c;
+            else if (c.name == "Cart2") cart2 = c;
         }
-        else
-        {
-            print("Bad Stuff");
-        }
-
     }
 
     public void GotItem(string itemName)
@@ -49,5 +40,12 @@ public class Manager : MonoBehaviour
             print("Bad Stuff");
         }
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) cart1.Lockout();
+        if (Input.GetMouseButton(1)) cart2.Extend();
+        else cart2.Retract();
     }
 }
