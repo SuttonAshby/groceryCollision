@@ -24,7 +24,7 @@ public class RecipesEditor : Editor
     {
         serializedObject.Update();
 
-        if (_recipes.itemTree == null)
+        if (_recipes.itemTree == null || _recipes.itemTree.Items.Count <= 1)
         {
             GUILayout.BeginHorizontal();
             _itemToAdd = EditorGUILayout.TextField("", _itemToAdd);
@@ -97,7 +97,7 @@ public class RecipesEditor : Editor
         if (depth > 5) return;
         EditorGUI.indentLevel = 2 * (depth - 1);
 
-        if (depth == 2)
+        if (depth == 2 || depth == 1)
         {
             GUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(item.Name);
@@ -173,7 +173,17 @@ public class RecipesEditor : Editor
 
     private void RemoveChild(ItemTree.Item parent, ItemTree.Item child)
     {
-        parent.RemoveChild(child);
+        if (parent == null)
+        {
+            if (EditorUtility.DisplayDialog("Delete?", "Really delete recipe?", "Bye Bye Forever", "Cancel"))
+            {
+                _recipes.itemTree.RemoveFromRoot(child);
+            }
+        }
+        else
+        {
+            parent.RemoveChild(child);
+        }
     }
 
 }

@@ -68,6 +68,13 @@ public class ItemTree
         return true;
     }
 
+    public void RemoveFromRoot(Item item)
+    {
+        if (!HasItem(item.Name)) return;
+        Root.RemoveChild(item);
+        Items.Remove(item);
+    }
+
     public bool HasItem(string itemName)
     {
         var item = this.GetItem(itemName);
