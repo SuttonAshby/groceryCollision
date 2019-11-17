@@ -1,82 +1,151 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
+using System;
+using System.Linq;
+
+[System.Serializable]
 public class ItemTree
 {
-    public class Item
+
+    [System.Serializable]
+    public class Options
     {
-        public string Name { get; }
-        public bool Done { get; private set; }
-
-        public Item Parent { get; private set; }
-        private List<Item> Children { get; }
-        private int ChildrenRemaining;
-
-        public Item(string name, Item parent)
+        public List<Item> Items;
+        public Options(params Item[] items)
         {
-            this.Name = name;
-            this.Parent = parent;
-            this.Children = new List<Item>();
-            this.ChildrenRemaining = 0;
+            if (items == null || items.Length == 0) Items = new List<Item>();
+            else Items = items.ToList();
+        }
+    }
+
+    [System.Serializable]
+    public class Item : IEquatable<Item>
+    {
+        [SerializeField]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
+
+        [SerializeField]
+        private bool _hasAsset;
+        public bool HasAsset { get => _hasAsset; set => _hasAsset = value; }
+
+        public bool Done { get; private set; }
+        [SerializeField]
+        private List<Options> _options;
+        public List<Options> Options { get => _options; }
+
+        public Item(string name)
+        {
+            _name = name;
+            _options = new List<Options>();
         }
 
-        public void AddChild(Item other)
+        public void AddOption(Item item)
         {
-            other.Parent = this;
-            this.Children.Add(other);
-            this.ChildrenRemaining++;
+            this.Options.Add(new Options(item));
         }
 
         public void SetDone()
         {
             this.Done = true;
-            if(this.Parent != null) this.Parent.ChildDone();
         }
 
-        public void ChildDone()
+        public override bool Equals(object other)
         {
-            if (Done) return;
-            ChildrenRemaining--;
-            if(ChildrenRemaining <= 0) this.SetDone();
+            if (other == null) return false;
+            var otherItem = other as Item;
+            if (otherItem == null) return false;
+            return otherItem.Name == this.Name;
         }
+
+        public bool Equals(Item other)
+        {
+            if (other == null) return false;
+            return other.Name == this.Name;
+        }
+
     }
 
-    private Item Root;
-    private Dictionary<string, Item> itemDict;
+    [SerializeField]
+    private List<Item> items;
+    public List<Item> Items { get => items; }
 
     public ItemTree()
     {
-        this.Root = new Item("root", null);
-        this.itemDict = new Dictionary<string, Item>() { { "root", this.Root } };
+        items = new List<Item>();
     }
 
-    public bool Append(string parent, string child)
+    public bool AppendToRoot(string childName)
     {
-        if(this.itemDict.TryGetValue(parent, out Item par))
-        {
-            Item ret = new Item(child, null);
-            par.AddChild(ret);
-            itemDict.Add(child, ret);
-            return true;
-        }
-        return false;
+        Item child = new Item(childName);
+        if (!HasItem(childName)) Items.Add(child);
+        return true;
+    }
+
+    public bool Append(string parentName, string childName)
+    {
+        var parent = GetItem(parentName);
+        return Append(parent, childName);
+    }
+
+    public bool Append(Item parent, string childName)
+    {
+        if (parent == null) return false;
+        Item child = new Item(childName);
+        parent.AddOption(child);
+        if (!HasItem(childName)) Items.Add(child);
+        return true;
+    }
+
+    public void RemoveFromRoot(Item item)
+    {
+        if (!HasItem(item.Name)) return;
+        Items.Remove(item);
     }
 
     public bool HasItem(string itemName)
     {
-        return this.itemDict.ContainsKey(itemName);
+        var item = this.GetItem(itemName);
+        return item != null;
     }
 
-    public bool ItemDone(string itemName)
+    public Item GetItem(string itemName)
     {
-        if(this.itemDict.TryGetValue(itemName, out Item res))
+        if (string.IsNullOrEmpty(itemName)) return null;
+        foreach (var item in Items)
         {
-            res.SetDone();
-            return true;
+            if (item.Name == itemName) return item;
         }
-        return false;
+        return null;
     }
 
-    public bool IsTreeDone()
+    public bool SetItemDone(string itemName)
     {
-        return Root.Done;
+        var item = GetItem(itemName);
+        if (item == null) return false;
+        item.SetDone();
+        return true;
     }
+
+    public bool IsItemDone(string itemName)
+    {
+        var item = GetItem(itemName);
+        if (item == null) return false;
+        if (!item.Done) return false;
+        foreach (var option in item.Options)
+        {
+            var anyDone = false;
+            foreach (var child in option.Items)
+            {
+                if (IsItemDone(child.Name))
+                {
+                    anyDone = true;
+                    break;
+                }
+            }
+            if (!anyDone) return false;
+        }
+        return true;
+    }
+
 }

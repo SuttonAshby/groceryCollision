@@ -3,6 +3,11 @@ using DG.Tweening;
 
 public class Cart : MonoBehaviour
 {
+    public Collider shotBlocker;
+    public Vector3 CartMoveDist;
+    public float CartMoveTime;
+    public float ItemShrinkFactor;
+
     private Manager manager;
     private bool Moving;
     private enum MoveState
@@ -13,7 +18,7 @@ public class Cart : MonoBehaviour
         Inside
     }
     private MoveState moveState;
-    private readonly Vector3 CartMoveDist = new Vector3(0, 0, 7);
+
     void Start()
     {
         manager = FindObjectOfType<Manager>();
@@ -31,7 +36,14 @@ public class Cart : MonoBehaviour
         {
             case MoveState.Inside:
                 moveState = MoveState.MovingOut;
-                transform.DOMove(CartMoveDist, 1).SetRelative(true).OnComplete(() => moveState = MoveState.Outside).OnRewind(() => moveState = MoveState.Inside) ;
+                transform.DOMove(CartMoveDist, CartMoveTime)
+                    .SetRelative(true)
+                    .OnStart(() =>
+                    {
+                        shotBlocker.enabled = true;
+                    })
+                    .OnComplete(() => moveState = MoveState.Outside)
+                    .OnRewind(() => moveState = MoveState.Inside) ;
                 break;
             case MoveState.MovingIn:
                 moveState = MoveState.MovingOut;
@@ -46,7 +58,13 @@ public class Cart : MonoBehaviour
         {
             case MoveState.Outside:
                 moveState = MoveState.MovingIn;
-                transform.DOMove(-CartMoveDist, 1).SetRelative(true).OnComplete(() => moveState = MoveState.Inside).OnRewind(() => moveState = MoveState.Outside);
+                transform.DOMove(-CartMoveDist, CartMoveTime)
+                    .SetRelative(true)
+                    .OnComplete(() => {
+                        shotBlocker.enabled = false;
+                        moveState = MoveState.Inside;
+                    })
+                    .OnRewind(() => moveState = MoveState.Outside);
                 break;
             case MoveState.MovingOut:
                 moveState = MoveState.MovingIn;
@@ -61,14 +79,19 @@ public class Cart : MonoBehaviour
         if (!Moving)
         {
             Moving = true;
-            transform.DOMove(-CartMoveDist, 1).SetLoops(2, LoopType.Yoyo).SetRelative(true).OnComplete(() => Moving = false);
+            transform.DOMove(-CartMoveDist, CartMoveTime)
+                .SetLoops(2, LoopType.Yoyo)
+                .SetRelative(true)
+                .OnComplete(() => Moving = false);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void AddItem(GameObject go)
     {
-        string otherName = other.gameObject.name;
-        manager.GotItem(otherName);
-        Destroy(other.gameObject);
+        if (moveState == MoveState.Inside)
+        {
+            manager.GotItem(this, go.name);
+            go.transform.localScale = go.transform.localScale / ItemShrinkFactor;
+        }
     }
 }
