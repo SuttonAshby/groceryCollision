@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,11 +47,12 @@ public class TouchController : MonoBehaviour
             else 
             {
                 hit.rigidbody.useGravity = false;
-                gameObject.transform.position = new Vector3(
+                var raisedHeight = new Vector3(
                     gameObject.transform.position.x,
                     holdHeight,
-                    gameObject.transform.position.z
+                    gameObject.transform.position.z     
                 );
+                gameObject.transform.DOMove(raisedHeight, 0.1f);
             }
         }
     }
