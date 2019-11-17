@@ -1,9 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class ItemTree
 {
+
+    [System.Serializable]
+    public class Options
+    {
+        public List<Item> Items;
+        public Options(params Item[] items)
+        {
+            if (items == null || items.Length == 0) Items = new List<Item>();
+            else Items = items.ToList();
+        }
+    }
+
     [System.Serializable]
     public class Item
     {
@@ -12,25 +25,25 @@ public class ItemTree
         public string Name { get => _name; set => _name = value; }
         public bool Done { get; private set; }
         [SerializeField]
-        private List<Item> _children;
-        public List<Item> Children { get => _children; }
+        private List<Options> _options;
+        public List<Options> Options { get => _options; }
 
         public Item(string name)
         {
             _name = name;
-            _children = new List<Item>();
+            _options = new List<Options>();
         }
 
-        public void AddChild(Item other)
+        public void AddOption(Item item)
         {
-            this.Children.Add(other);
+            this.Options.Add(new Options(item));
         }
 
-        public void RemoveChild(Item other)
-        {
-            if (!Children.Contains(other)) return;
-            Children.Remove(other);
-        }
+        // public void RemoveOption(Option option)
+        // {
+        //     if (!Options.Contains(option)) return;
+        //     Options.Remove(option);
+        // }
 
         public void SetDone()
         {
@@ -39,19 +52,20 @@ public class ItemTree
 
     }
 
-    public Item Root;
     [SerializeField]
     private List<Item> items;
     public List<Item> Items { get => items; }
+
     public ItemTree()
     {
-        this.Root = new Item("root");
-        this.items = new List<Item>() { this.Root };
+        items = new List<Item>();
     }
 
     public bool AppendToRoot(string childName)
     {
-        return Append(Root, childName);
+        Item child = new Item(childName);
+        if (!HasItem(childName)) Items.Add(child);
+        return true;
     }
 
     public bool Append(string parentName, string childName)
@@ -64,7 +78,7 @@ public class ItemTree
     {
         if (parent == null) return false;
         Item child = new Item(childName);
-        parent.AddChild(child);
+        parent.AddOption(child);
         if (!HasItem(childName)) Items.Add(child);
         return true;
     }
@@ -72,7 +86,6 @@ public class ItemTree
     public void RemoveFromRoot(Item item)
     {
         if (!HasItem(item.Name)) return;
-        Root.RemoveChild(item);
         Items.Remove(item);
     }
 
@@ -105,15 +118,20 @@ public class ItemTree
         var item = GetItem(itemName);
         if (item == null) return false;
         if (!item.Done) return false;
-        foreach (var child in item.Children)
+        foreach (var option in item.Options)
         {
-            if (!IsItemDone(child.Name)) return false;
+            var anyDone = false;
+            foreach (var child in option.Items)
+            {
+                if (IsItemDone(child.Name))
+                {
+                    anyDone = true;
+                    break;
+                }
+            }
+            if (!anyDone) return false;
         }
         return true;
     }
 
-    public bool IsTreeDone()
-    {
-        return IsItemDone(Root.Name);
-    }
 }

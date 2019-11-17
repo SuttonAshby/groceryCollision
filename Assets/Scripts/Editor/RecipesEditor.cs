@@ -28,7 +28,7 @@ public class RecipesEditor : Editor
         header.fontSize = 15;
         header.fontStyle = FontStyle.Bold;
 
-        if (_recipes.itemTree == null || _recipes.itemTree.Items.Count <= 1)
+        if (_recipes.itemTree == null || _recipes.itemTree.Items.Count == 0)
         {
             GUILayout.BeginHorizontal();
             _itemToAdd = EditorGUILayout.TextField("", _itemToAdd);
@@ -38,7 +38,7 @@ public class RecipesEditor : Editor
         }
 
         var items = _recipes.itemTree.Items;
-        _itemNames = items.Where((i) => i.Name != "root").Select((i) => i.Name).ToArray();
+        _itemNames = items.Select((i) => i.Name).ToArray();
 
         EditorGUILayout.LabelField("Recipes", header, GUILayout.Height(24));
         if (_recipes.recipeRoots != null)
@@ -68,7 +68,6 @@ public class RecipesEditor : Editor
         for (var i = items.Count - 1; i >= 0; i--)
         {
             var item = items[i];
-            if (item.Name == "root") continue;
             DrawItem(item, null, 1);
 
             GUILayout.Space(12);
@@ -85,12 +84,17 @@ public class RecipesEditor : Editor
 
     private void AddRecipe()
     {
+        var item = _recipes.itemTree.GetItem(_itemNames[_recipeToAdd]);
+        if (item == null) return;
+        if (_recipes.recipeRoots == null || _recipes.recipeRoots.Length == 0)
+        {
+            _recipes.recipeRoots = new ItemTree.Item[] { item };
+            return;
+        }
         var existing = _recipes.recipeRoots;
         var expanded = new ItemTree.Item[existing.Length + 1];
         existing.CopyTo(expanded, 0);
         _recipes.recipeRoots = expanded;
-        var item = _recipes.itemTree.GetItem(_itemNames[_recipeToAdd]);
-        if (item == null) return;
         _recipes.recipeRoots[_recipes.recipeRoots.Length - 1] = item;
         _dirty = true;
     }
@@ -118,29 +122,55 @@ public class RecipesEditor : Editor
                 if (prevItemName != item.Name) _dirty = true;
             }
             else EditorGUILayout.LabelField(item.Name);
-            if (GUILayout.Button("-")) RemoveChild(parent, item);
+            // if (GUILayout.Button("-")) RemoveChild(parent, item);
             GUILayout.EndHorizontal();
         }
         else
         {
             EditorGUILayout.LabelField(item.Name);
         }
-        EditorGUI.indentLevel = 2 * depth;
-        for (var i = item.Children.Count - 1; i >= 0; i--)
+        for (var i = item.Options.Count - 1; i >= 0; i--)
         {
-            var childName = item.Children[i].Name;
-            var child = _recipes.itemTree.GetItem(childName);
-            if (child != null) DrawItem(child, item, depth + 1);
+            EditorGUI.indentLevel = 2 * depth;
+            if (item.Options.Count > 1)
+            {
+                EditorGUI.indentLevel = 2 * depth - 1;
+                EditorGUILayout.LabelField(string.Format("Option {0}", i + 1));
+            }
+            var option = item.Options[i];
+            for (var j = option.Items.Count - 1; j >= 0; j--)
+            {
+                var childName = option.Items[j].Name;
+                var child = _recipes.itemTree.GetItem(childName);
+                if (child != null) DrawItem(child, item, depth + 1);
+            }
+
+            if (depth == 1)
+            {
+                EditorGUI.indentLevel = 2 * depth;
+                GUILayout.BeginHorizontal();
+                if (!_selectedItems.ContainsKey(item.Name)) _selectedItems[item.Name] = 0;
+                _selectedItems[item.Name] = EditorGUILayout.Popup(_selectedItems[item.Name], _itemNames);
+                if (GUILayout.Button("+")) AddChild(item, option, _itemNames[_selectedItems[item.Name]]);
+                GUILayout.EndHorizontal();
+            }
+            // if (i > 0) EditorGUILayout.LabelField(" - OR - ");
         }
 
         if (depth == 1)
         {
+
+            GUILayout.Space(8);
             EditorGUI.indentLevel = 2 * depth;
+            var key = string.Format("{0}-Or", item.Name);
             GUILayout.BeginHorizontal();
-            if (!_selectedItems.ContainsKey(item.Name)) _selectedItems[item.Name] = 0;
-            _selectedItems[item.Name] = EditorGUILayout.Popup(_selectedItems[item.Name], _itemNames);
-            if (GUILayout.Button("+")) AddChild(item);
+            if (!_selectedItems.ContainsKey(key)) _selectedItems[key] = 0;
+            _selectedItems[key] = EditorGUILayout.Popup(_selectedItems[key], _itemNames);
+            var label = "+";
+            if (item.Options.Count > 0) label = "+OR";
+            if (GUILayout.Button(label)) AddOption(item, _itemNames[_selectedItems[key]]);
             GUILayout.EndHorizontal();
+
         }
     }
 
@@ -162,31 +192,53 @@ public class RecipesEditor : Editor
         _dirty = true;
     }
 
-    private void AddChild(ItemTree.Item item)
+    private void AddChild(ItemTree.Item item, ItemTree.Options options, string childName)
     {
-        var name = _itemNames[_selectedItems[item.Name]];
-        if (string.IsNullOrEmpty(name))
+
+        if (string.IsNullOrEmpty(childName))
         {
             Debug.LogError("no name specified");
             return;
         }
-        if (name == item.Name)
+        if (childName == item.Name)
         {
             Debug.LogError("can't add self as parent");
             return;
         }
-        if (!_recipes.itemTree.HasItem(name))
+        if (!_recipes.itemTree.HasItem(childName))
         {
             Debug.LogError("no such item");
             return;
         }
-        var child = _recipes.itemTree.GetItem(name);
-        if (item.Children.Contains(child))
+        var child = _recipes.itemTree.GetItem(childName);
+        if (child == null)
+        {
+            Debug.LogError("child is null");
+            return;
+        }
+        if (options.Items.Contains(child))
         {
             Debug.LogError("child already added");
             return;
         }
-        item.AddChild(child);
+        options.Items.Add(child);
+        _dirty = true;
+    }
+
+    private void AddOption(ItemTree.Item item, string optionName)
+    {
+        if (optionName == item.Name)
+        {
+            Debug.LogError("can't add self as parent");
+            return;
+        }
+        if (!_recipes.itemTree.HasItem(optionName))
+        {
+            Debug.LogError("no such item");
+            return;
+        }
+        var child = _recipes.itemTree.GetItem(optionName);
+        item.AddOption(child);
         _dirty = true;
     }
 
@@ -201,7 +253,7 @@ public class RecipesEditor : Editor
         }
         else
         {
-            parent.RemoveChild(child);
+            // parent.RemoveOption(child);
         }
         _dirty = true;
     }
