@@ -24,6 +24,11 @@ public class ItemTree
         [SerializeField]
         private string _name;
         public string Name { get => _name; set => _name = value; }
+
+        [SerializeField]
+        private bool _hasAsset;
+        public bool HasAsset { get => _hasAsset; set => _hasAsset = value; }
+
         public bool Done { get; private set; }
         [SerializeField]
         private List<Options> _options;

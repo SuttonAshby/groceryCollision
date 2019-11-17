@@ -120,6 +120,9 @@ public class RecipesEditor : Editor
                 var prevItemName = item.Name;
                 item.Name = EditorGUILayout.TextField(item.Name);
                 if (prevItemName != item.Name) _dirty = true;
+                var prevHasAsset = item.HasAsset;
+                item.HasAsset = EditorGUILayout.Toggle(item.HasAsset, GUILayout.Width(50));
+                if (prevHasAsset != item.HasAsset) _dirty = true;
             }
             else EditorGUILayout.LabelField(item.Name);
             if (GUILayout.Button("-")) RemoveChild(parent, options, item);
