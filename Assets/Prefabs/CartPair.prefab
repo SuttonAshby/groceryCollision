@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b3c6f95fad2a1459d77cdddf6f4120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-    items: []
-  cart1ListItem: 
-  cart2ListItem: 
+  player1Recipes: {fileID: 11400000, guid: a05b217283a674944b4b3bc702115fd1, type: 2}
+  player2Recipes: {fileID: 11400000, guid: 91652983c995f438bb9213c3f62b47af, type: 2}
+  cart1: {fileID: 362325622444590385}
+  cart2: {fileID: 362325622303743326}
 --- !u!1 &8950854603936517909
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +155,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3995015989857135585}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &362325622444590385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3636121081005584080, guid: d881dbd2c5ef80a4d9b8af0958ed6df7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3995015989857135585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccefabc3bd832fe4da9c0c56a0823e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6390187414792560597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,3 +242,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6390187414792560597}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &362325622303743326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6749132924866396811, guid: 15539ddc984ada74c8804821d886ea80,
+    type: 3}
+  m_PrefabInstance: {fileID: 6390187414792560597}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccefabc3bd832fe4da9c0c56a0823e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
