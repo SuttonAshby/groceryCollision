@@ -50,3 +50,268 @@ MonoBehaviour:
           _options: []
     - _name: Peaches
       _options: []
+    - _name: Eggs
+      _options: []
+    - _name: Milk
+      _options: []
+    - _name: Yeast
+      _options: []
+    - _name: Tomatoes
+      _options: []
+    - _name: Tomato Sauce
+      _options:
+      - Items:
+        - _name: Tomatoes
+          _options: []
+        - _name: Garlic
+          _options: []
+    - _name: Garlic
+      _options: []
+    - _name: Pizza
+      _options:
+      - Items:
+        - _name: Pizza Crust
+          _options:
+          - Items:
+            - _name: Flour
+              _options: []
+            - _name: Yeast
+              _options: []
+        - _name: Tomato Sauce
+          _options:
+          - Items:
+            - _name: Tomatoes
+              _options: []
+            - _name: Garlic
+              _options: []
+        - _name: Cheese
+          _options: []
+    - _name: Cheese
+      _options: []
+    - _name: Pizza Crust
+      _options:
+      - Items:
+        - _name: Flour
+          _options: []
+        - _name: Yeast
+          _options: []
+    - _name: Lasagna
+      _options:
+      - Items:
+        - _name: Pasta
+          _options: []
+        - _name: Tomato Sauce
+          _options:
+          - Items:
+            - _name: Tomatoes
+              _options: []
+            - _name: Garlic
+              _options: []
+        - _name: Cheese
+          _options: []
+        - _name: Lasagna Filling
+          _options:
+          - Items:
+            - _name: Ground Beef
+              _options: []
+          - Items:
+            - _name: Spinach
+              _options: []
+    - _name: Ground Beef
+      _options: []
+    - _name: Spinach
+      _options: []
+    - _name: Pasta
+      _options: []
+    - _name: Lasagna Filling
+      _options:
+      - Items:
+        - _name: Ground Beef
+          _options: []
+      - Items:
+        - _name: Spinach
+          _options: []
+    - _name: Canned Tuna
+      _options: []
+    - _name: Mayonaise
+      _options: []
+    - _name: Deviled Eggs
+      _options: []
+    - _name: Lemons
+      _options: []
+    - _name: Lemon Meringue Pie
+      _options: []
+    - _name: Chicken Pot Pie
+      _options: []
+    - _name: Chicken
+      _options: []
+    - _name: Peas
+      _options: []
+    - _name: Carrots
+      _options: []
+    - _name: Peas & Carrots
+      _options: []
+    - _name: Tuna Casserole
+      _options:
+      - Items:
+        - _name: Canned Tuna
+          _options: []
+        - _name: Pasta
+          _options: []
+    - _name: Tuna Sandwich
+      _options:
+      - Items:
+        - _name: Canned Tuna
+          _options: []
+        - _name: Mayonaise
+          _options: []
+        - _name: Bread
+          _options:
+          - Items:
+            - _name: Flour
+              _options: []
+            - _name: Yeast
+              _options: []
+    - _name: Egg Salad Sandwich
+      _options: []
+    - _name: Bread
+      _options:
+      - Items:
+        - _name: Flour
+          _options: []
+        - _name: Yeast
+          _options: []
+    - _name: Pasta Salad
+      _options:
+      - Items:
+        - _name: Pasta
+          _options: []
+    - _name: Cheese Omellete
+      _options:
+      - Items:
+        - _name: Eggs
+          _options: []
+        - _name: Cheese
+          _options: []
+    - _name: Buttered Toast
+      _options:
+      - Items:
+        - _name: Bread
+          _options:
+          - Items:
+            - _name: Flour
+              _options: []
+            - _name: Yeast
+              _options: []
+        - _name: Butter
+          _options: []
+    - _name: Quiche
+      _options:
+      - Items:
+        - _name: Pie Crust
+          _options:
+          - Items:
+            - _name: donkey
+              _options: []
+            - _name: Flour
+              _options: []
+            - _name: Butter
+              _options: []
+        - _name: Eggs
+          _options: []
+        - _name: Cheese
+          _options: []
+        - _name: Quiche Filling
+          _options:
+          - Items:
+            - _name: Spinach
+              _options: []
+          - Items:
+            - _name: Spam
+              _options: []
+    - _name: Spam
+      _options: []
+    - _name: Hamburger Buns
+      _options: []
+    - _name: Potatoes
+      _options: []
+    - _name: Hamburgers
+      _options:
+      - Items:
+        - _name: Hamburger Buns
+          _options: []
+        - _name: Ground Beef
+          _options: []
+        - _name: Cheese
+          _options: []
+        - _name: Tomatoes
+          _options: []
+    - _name: Spam Salad
+      _options:
+      - Items:
+        - _name: Spam
+          _options: []
+        - _name: Mayonaise
+          _options: []
+    - _name: Sloppy Joes
+      _options:
+      - Items:
+        - _name: Ground Beef
+          _options: []
+        - _name: Hamburger Buns
+          _options: []
+        - _name: Tomato Sauce
+          _options:
+          - Items:
+            - _name: Tomatoes
+              _options: []
+            - _name: Garlic
+              _options: []
+    - _name: Beef Stew
+      _options:
+      - Items:
+        - _name: Ground Beef
+          _options: []
+        - _name: Potatoes
+          _options: []
+        - _name: Carrots
+          _options: []
+    - _name: Chili
+      _options:
+      - Items:
+        - _name: Ground Beef
+          _options: []
+        - _name: Canned Beans
+          _options: []
+        - _name: Tomatoes
+          _options: []
+        - _name: Garlic
+          _options: []
+    - _name: Canned Beans
+      _options: []
+    - _name: Pancakes
+      _options:
+      - Items:
+        - _name: Flour
+          _options: []
+        - _name: Sugar
+          _options: []
+        - _name: Butter
+          _options: []
+    - _name: Lettuce
+      _options: []
+    - _name: Green Salad
+      _options:
+      - Items:
+        - _name: Lettuce
+          _options: []
+        - _name: Tomatoes
+          _options: []
+    - _name: Quiche Filling
+      _options:
+      - Items:
+        - _name: Spinach
+          _options: []
+      - Items:
+        - _name: Spam
+          _options: []
