@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1929270970435221644}
   - component: {fileID: 25653114392042961}
   - component: {fileID: 2198929341823231965}
+  - component: {fileID: 5243914980477202996}
   m_Layer: 0
   m_Name: SoapBottle
   m_TagString: Untagged
@@ -110,3 +111,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5243914980477202996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929270970437150284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8861c286d9702c641ab3e0a79bfbfa8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: trash
