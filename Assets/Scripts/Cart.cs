@@ -92,6 +92,19 @@ public class Cart : MonoBehaviour
         {
             manager.GotItem(this, go.name);
             go.transform.localScale = go.transform.localScale / ItemShrinkFactor;
+
+            RaycastHit hit;
+            if (Physics.Raycast(go.transform.position, Vector3.down, out hit))
+            {
+                Destroy(go.GetComponent<Rigidbody>());
+                go.transform.position = new Vector3(
+                    hit.point.x,
+                    hit.point.y + (go.GetComponent<Collider>().bounds.size.y / 2),
+                    hit.point.z
+                );
+
+                go.transform.SetParent(transform);
+            }
         }
     }
 }
