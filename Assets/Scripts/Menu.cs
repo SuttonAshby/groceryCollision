@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    void OnMouseDown()
+    public void StartGame()
     {
         SceneManager.LoadScene("Aisle", LoadSceneMode.Single);
     }
