@@ -47,12 +47,7 @@ public class TouchController : MonoBehaviour
             else 
             {
                 hit.rigidbody.useGravity = false;
-                var raisedHeight = new Vector3(
-                    gameObject.transform.position.x,
-                    holdHeight,
-                    gameObject.transform.position.z     
-                );
-                gameObject.transform.DOMove(raisedHeight, 0.1f);
+                gameObject.transform.DOMoveY(holdHeight, 0.1f);
             }
         }
     }
