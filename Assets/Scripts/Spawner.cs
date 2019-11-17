@@ -49,6 +49,13 @@ public class Spawner : MonoBehaviour
 
     }
 
+    [ContextMenu("Log Player Items")]
+    private void LogPlayerItems()
+    {
+        var items = GetPlayerSpawnItems(1f);
+        foreach (var item in items) Debug.Log(item);
+    }
+
     private string[] GetPlayerSpawnItems(float includeChance = 1f)
     {
         var player1Items = player1Recipes.GetAllIngredientNames(true);

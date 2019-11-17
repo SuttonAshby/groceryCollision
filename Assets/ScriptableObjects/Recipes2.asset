@@ -13,28 +13,34 @@ MonoBehaviour:
   m_Name: Recipes2
   m_EditorClassIdentifier: 
   recipeRoots:
-  - _name: Apple Pie
+  - _name: Tuna Sandwich
     _hasAsset: 0
     _options:
     - Items:
-      - _name: Pie Crust
-        _hasAsset: 0
-        _options:
-        - Items:
-          - _name: donkey
-            _hasAsset: 0
-            _options: []
-          - _name: Flour
-            _hasAsset: 0
-            _options: []
-          - _name: Butter
-            _hasAsset: 0
-            _options: []
-      - _name: Apples
+      - _name: Canned Tuna
         _hasAsset: 0
         _options: []
-      - _name: Sugar
+      - _name: Mayonaise
         _hasAsset: 0
+        _options: []
+      - _name: Bread
+        _hasAsset: 0
+        _options: []
+  - _name: Pasta Salad
+    _hasAsset: 1
+    _options:
+    - Items:
+      - _name: Pasta
+        _hasAsset: 0
+        _options: []
+      - _name: Mayonaise
+        _hasAsset: 1
+        _options: []
+      - _name: Onions
+        _hasAsset: 1
+        _options: []
+      - _name: Tomatoes
+        _hasAsset: 1
         _options: []
   - _name: Lasagna
     _hasAsset: 0
@@ -67,35 +73,6 @@ MonoBehaviour:
           - _name: Spinach
             _hasAsset: 0
             _options: []
-  - _name: Tuna Sandwich
-    _hasAsset: 0
-    _options:
-    - Items:
-      - _name: Canned Tuna
-        _hasAsset: 0
-        _options: []
-      - _name: Mayonaise
-        _hasAsset: 0
-        _options: []
-      - _name: Bread
-        _hasAsset: 0
-        _options: []
-  - _name: Beef Stew
-    _hasAsset: 0
-    _options:
-    - Items:
-      - _name: Ground Beef
-        _hasAsset: 0
-        _options: []
-      - _name: Potatoes
-        _hasAsset: 0
-        _options: []
-      - _name: Carrots
-        _hasAsset: 0
-        _options: []
-      - _name: Onions
-        _hasAsset: 0
-        _options: []
   - _name: Carrot Cake
     _hasAsset: 0
     _options:
@@ -112,8 +89,47 @@ MonoBehaviour:
       - _name: Carrots
         _hasAsset: 0
         _options: []
-  - _name: Quiche
+  - _name: Beef Stew
+    _hasAsset: 1
+    _options:
+    - Items:
+      - _name: Ground Beef
+        _hasAsset: 0
+        _options: []
+      - _name: Potatoes
+        _hasAsset: 0
+        _options: []
+      - _name: Carrots
+        _hasAsset: 0
+        _options: []
+      - _name: Onions
+        _hasAsset: 0
+        _options: []
+  - _name: Apple Pie
     _hasAsset: 0
+    _options:
+    - Items:
+      - _name: Pie Crust
+        _hasAsset: 0
+        _options:
+        - Items:
+          - _name: donkey
+            _hasAsset: 0
+            _options: []
+          - _name: Flour
+            _hasAsset: 0
+            _options: []
+          - _name: Butter
+            _hasAsset: 0
+            _options: []
+      - _name: Apples
+        _hasAsset: 0
+        _options: []
+      - _name: Sugar
+        _hasAsset: 0
+        _options: []
+  - _name: Quiche
+    _hasAsset: 1
     _options:
     - Items:
       - _name: Pie Crust
@@ -146,265 +162,11 @@ MonoBehaviour:
           - _name: Spam
             _hasAsset: 0
             _options: []
-  - _name: Pasta Salad
-    _hasAsset: 1
-    _options:
-    - Items:
-      - _name: Pasta
-        _hasAsset: 0
-        _options: []
   itemTree:
     items:
-    - _name: Flour
-      _hasAsset: 1
-      _options: []
-    - _name: Butter
-      _hasAsset: 0
-      _options: []
-    - _name: Pie Crust
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Flour
-          _hasAsset: 1
-          _options: []
-        - _name: Butter
-          _hasAsset: 0
-          _options: []
-    - _name: Apples
-      _hasAsset: 1
-      _options: []
-    - _name: Sugar
-      _hasAsset: 1
-      _options: []
-    - _name: Apple Pie
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Pie Crust
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: donkey
-              _hasAsset: 0
-              _options: []
-            - _name: Flour
-              _hasAsset: 0
-              _options: []
-            - _name: Butter
-              _hasAsset: 0
-              _options: []
-        - _name: Apples
-          _hasAsset: 0
-          _options: []
-        - _name: Sugar
-          _hasAsset: 0
-          _options: []
-    - _name: Peaches
-      _hasAsset: 0
-      _options: []
-    - _name: Eggs
-      _hasAsset: 1
-      _options: []
-    - _name: Milk
-      _hasAsset: 1
-      _options: []
     - _name: Yeast
       _hasAsset: 0
       _options: []
-    - _name: Tomatoes
-      _hasAsset: 1
-      _options: []
-    - _name: Tomato Sauce
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Tomatoes
-          _hasAsset: 0
-          _options: []
-        - _name: Garlic
-          _hasAsset: 0
-          _options: []
-    - _name: Garlic
-      _hasAsset: 1
-      _options: []
-    - _name: Pizza
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Pizza Crust
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: Flour
-              _hasAsset: 0
-              _options: []
-            - _name: Yeast
-              _hasAsset: 0
-              _options: []
-        - _name: Tomato Sauce
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: Tomatoes
-              _hasAsset: 0
-              _options: []
-            - _name: Garlic
-              _hasAsset: 0
-              _options: []
-        - _name: Cheese
-          _hasAsset: 0
-          _options: []
-    - _name: Cheese
-      _hasAsset: 1
-      _options: []
-    - _name: Pizza Crust
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Flour
-          _hasAsset: 0
-          _options: []
-        - _name: Yeast
-          _hasAsset: 0
-          _options: []
-    - _name: Lasagna
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Pasta
-          _hasAsset: 0
-          _options: []
-        - _name: Tomato Sauce
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: Tomatoes
-              _hasAsset: 0
-              _options: []
-            - _name: Garlic
-              _hasAsset: 0
-              _options: []
-        - _name: Cheese
-          _hasAsset: 0
-          _options: []
-        - _name: Lasagna Filling
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: Ground Beef
-              _hasAsset: 0
-              _options: []
-          - Items:
-            - _name: Spinach
-              _hasAsset: 0
-              _options: []
-    - _name: Ground Beef
-      _hasAsset: 1
-      _options: []
-    - _name: Spinach
-      _hasAsset: 1
-      _options: []
-    - _name: Pasta
-      _hasAsset: 1
-      _options: []
-    - _name: Lasagna Filling
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Ground Beef
-          _hasAsset: 0
-          _options: []
-      - Items:
-        - _name: Spinach
-          _hasAsset: 0
-          _options: []
-    - _name: Canned Tuna
-      _hasAsset: 1
-      _options: []
-    - _name: Mayonaise
-      _hasAsset: 1
-      _options: []
-    - _name: Deviled Eggs
-      _hasAsset: 0
-      _options: []
-    - _name: Lemons
-      _hasAsset: 0
-      _options: []
-    - _name: Lemon Meringue Pie
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Pie Crust
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: donkey
-              _hasAsset: 0
-              _options: []
-            - _name: Flour
-              _hasAsset: 0
-              _options: []
-            - _name: Butter
-              _hasAsset: 0
-              _options: []
-        - _name: Eggs
-          _hasAsset: 0
-          _options: []
-    - _name: Chicken Pot Pie
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Pie Crust
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: donkey
-              _hasAsset: 0
-              _options: []
-            - _name: Flour
-              _hasAsset: 0
-              _options: []
-            - _name: Butter
-              _hasAsset: 0
-              _options: []
-        - _name: Chicken
-          _hasAsset: 0
-          _options: []
-        - _name: Carrots
-          _hasAsset: 0
-          _options: []
-        - _name: Peas
-          _hasAsset: 0
-          _options: []
-        - _name: Onions
-          _hasAsset: 0
-          _options: []
-    - _name: Chicken
-      _hasAsset: 0
-      _options: []
-    - _name: Peas
-      _hasAsset: 0
-      _options: []
-    - _name: Carrots
-      _hasAsset: 0
-      _options: []
-    - _name: Peas & Carrots
-      _hasAsset: 0
-      _options: []
-    - _name: Tuna Casserole
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Canned Tuna
-          _hasAsset: 0
-          _options: []
-        - _name: Pasta
-          _hasAsset: 0
-          _options: []
-        - _name: Onions
-          _hasAsset: 0
-          _options: []
     - _name: Tuna Sandwich
       _hasAsset: 0
       _options:
@@ -418,47 +180,80 @@ MonoBehaviour:
         - _name: Bread
           _hasAsset: 0
           _options: []
-    - _name: Egg Salad Sandwich
+    - _name: Tuna Casserole
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Canned Tuna
+          _hasAsset: 0
+          _options: []
+        - _name: Pasta
+          _hasAsset: 0
+          _options: []
+        - _name: Onions
+          _hasAsset: 0
+          _options: []
+    - _name: Tomatoes
+      _hasAsset: 1
+      _options: []
+    - _name: Tomato Sauce
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Tomatoes
+          _hasAsset: 0
+          _options: []
+        - _name: Garlic
+          _hasAsset: 0
+          _options: []
+    - _name: Sugar
+      _hasAsset: 1
+      _options: []
+    - _name: Spinach
+      _hasAsset: 1
+      _options: []
+    - _name: Spam Salad
       _hasAsset: 0
       _options:
       - Items:
-        - _name: Bread
-          _hasAsset: 0
-          _options: []
-        - _name: Eggs
+        - _name: Spam
           _hasAsset: 0
           _options: []
         - _name: Mayonaise
           _hasAsset: 0
           _options: []
-    - _name: Bread
-      _hasAsset: 1
+    - _name: Spam
+      _hasAsset: 0
       _options: []
-    - _name: Pasta Salad
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Pasta
-          _hasAsset: 0
-          _options: []
-    - _name: Cheese Omellete
+    - _name: Sloppy Joes
       _hasAsset: 0
       _options:
       - Items:
-        - _name: Eggs
+        - _name: Ground Beef
           _hasAsset: 0
           _options: []
-        - _name: Cheese
+        - _name: Tomato Sauce
           _hasAsset: 0
-          _options: []
-    - _name: Buttered Toast
-      _hasAsset: 0
-      _options:
-      - Items:
+          _options:
+          - Items:
+            - _name: Tomatoes
+              _hasAsset: 0
+              _options: []
+            - _name: Garlic
+              _hasAsset: 0
+              _options: []
         - _name: Bread
           _hasAsset: 0
           _options: []
-        - _name: Butter
+    - _name: Quiche Filling
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Spinach
+          _hasAsset: 0
+          _options: []
+      - Items:
+        - _name: Spam
           _hasAsset: 0
           _options: []
     - _name: Quiche
@@ -495,15 +290,174 @@ MonoBehaviour:
             - _name: Spam
               _hasAsset: 0
               _options: []
-    - _name: Spam
-      _hasAsset: 0
-      _options: []
-    - _name: Hamburger Buns
-      _hasAsset: 0
-      _options: []
     - _name: Potatoes
       _hasAsset: 1
       _options: []
+    - _name: Pizza Crust
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Flour
+          _hasAsset: 0
+          _options: []
+        - _name: Yeast
+          _hasAsset: 0
+          _options: []
+    - _name: Pizza
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Pizza Crust
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: Flour
+              _hasAsset: 0
+              _options: []
+            - _name: Yeast
+              _hasAsset: 0
+              _options: []
+        - _name: Tomato Sauce
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: Tomatoes
+              _hasAsset: 0
+              _options: []
+            - _name: Garlic
+              _hasAsset: 0
+              _options: []
+        - _name: Cheese
+          _hasAsset: 0
+          _options: []
+    - _name: Pie Crust
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Flour
+          _hasAsset: 1
+          _options: []
+        - _name: Butter
+          _hasAsset: 0
+          _options: []
+    - _name: Peas & Carrots
+      _hasAsset: 0
+      _options: []
+    - _name: Peas
+      _hasAsset: 1
+      _options: []
+    - _name: Peaches
+      _hasAsset: 0
+      _options: []
+    - _name: Pasta Salad
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Pasta
+          _hasAsset: 0
+          _options: []
+        - _name: Mayonaise
+          _hasAsset: 1
+          _options: []
+        - _name: Onions
+          _hasAsset: 1
+          _options: []
+        - _name: Tomatoes
+          _hasAsset: 1
+          _options: []
+    - _name: Pasta
+      _hasAsset: 1
+      _options: []
+    - _name: Pancakes
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Flour
+          _hasAsset: 0
+          _options: []
+        - _name: Sugar
+          _hasAsset: 0
+          _options: []
+        - _name: Butter
+          _hasAsset: 0
+          _options: []
+    - _name: Onions
+      _hasAsset: 1
+      _options: []
+    - _name: Milk
+      _hasAsset: 1
+      _options: []
+    - _name: Mayonaise
+      _hasAsset: 1
+      _options: []
+    - _name: Lettuce
+      _hasAsset: 0
+      _options: []
+    - _name: Lemons
+      _hasAsset: 0
+      _options: []
+    - _name: Lemon Meringue Pie
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Pie Crust
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: donkey
+              _hasAsset: 0
+              _options: []
+            - _name: Flour
+              _hasAsset: 0
+              _options: []
+            - _name: Butter
+              _hasAsset: 0
+              _options: []
+        - _name: Eggs
+          _hasAsset: 0
+          _options: []
+    - _name: Lasagna Filling
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Ground Beef
+          _hasAsset: 0
+          _options: []
+      - Items:
+        - _name: Spinach
+          _hasAsset: 0
+          _options: []
+    - _name: Lasagna
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Pasta
+          _hasAsset: 0
+          _options: []
+        - _name: Tomato Sauce
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: Tomatoes
+              _hasAsset: 0
+              _options: []
+            - _name: Garlic
+              _hasAsset: 0
+              _options: []
+        - _name: Cheese
+          _hasAsset: 0
+          _options: []
+        - _name: Lasagna Filling
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: Ground Beef
+              _hasAsset: 0
+              _options: []
+          - Items:
+            - _name: Spinach
+              _hasAsset: 0
+              _options: []
     - _name: Hamburgers
       _hasAsset: 0
       _options:
@@ -520,52 +474,47 @@ MonoBehaviour:
         - _name: Tomatoes
           _hasAsset: 0
           _options: []
-    - _name: Spam Salad
+    - _name: Hamburger Buns
+      _hasAsset: 0
+      _options: []
+    - _name: Ground Beef
+      _hasAsset: 1
+      _options: []
+    - _name: Green Salad
       _hasAsset: 0
       _options:
       - Items:
-        - _name: Spam
+        - _name: Lettuce
+          _hasAsset: 0
+          _options: []
+        - _name: Tomatoes
+          _hasAsset: 0
+          _options: []
+    - _name: Garlic
+      _hasAsset: 1
+      _options: []
+    - _name: Flour
+      _hasAsset: 1
+      _options: []
+    - _name: Eggs
+      _hasAsset: 1
+      _options: []
+    - _name: Egg Salad Sandwich
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Bread
+          _hasAsset: 0
+          _options: []
+        - _name: Eggs
           _hasAsset: 0
           _options: []
         - _name: Mayonaise
           _hasAsset: 0
           _options: []
-    - _name: Sloppy Joes
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Ground Beef
-          _hasAsset: 0
-          _options: []
-        - _name: Tomato Sauce
-          _hasAsset: 0
-          _options:
-          - Items:
-            - _name: Tomatoes
-              _hasAsset: 0
-              _options: []
-            - _name: Garlic
-              _hasAsset: 0
-              _options: []
-        - _name: Bread
-          _hasAsset: 0
-          _options: []
-    - _name: Beef Stew
-      _hasAsset: 1
-      _options:
-      - Items:
-        - _name: Ground Beef
-          _hasAsset: 0
-          _options: []
-        - _name: Potatoes
-          _hasAsset: 0
-          _options: []
-        - _name: Carrots
-          _hasAsset: 0
-          _options: []
-        - _name: Onions
-          _hasAsset: 0
-          _options: []
+    - _name: Deviled Eggs
+      _hasAsset: 0
+      _options: []
     - _name: Chili
       _hasAsset: 1
       _options:
@@ -585,46 +534,54 @@ MonoBehaviour:
         - _name: Onions
           _hasAsset: 0
           _options: []
-    - _name: Canned Beans
+    - _name: Chicken Pot Pie
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Pie Crust
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: donkey
+              _hasAsset: 0
+              _options: []
+            - _name: Flour
+              _hasAsset: 0
+              _options: []
+            - _name: Butter
+              _hasAsset: 0
+              _options: []
+        - _name: Chicken
+          _hasAsset: 0
+          _options: []
+        - _name: Carrots
+          _hasAsset: 0
+          _options: []
+        - _name: Peas
+          _hasAsset: 0
+          _options: []
+        - _name: Onions
+          _hasAsset: 0
+          _options: []
+    - _name: Chicken
+      _hasAsset: 0
+      _options: []
+    - _name: Cheese Omellete
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Eggs
+          _hasAsset: 0
+          _options: []
+        - _name: Cheese
+          _hasAsset: 0
+          _options: []
+    - _name: Cheese
       _hasAsset: 1
       _options: []
-    - _name: Pancakes
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Flour
-          _hasAsset: 0
-          _options: []
-        - _name: Sugar
-          _hasAsset: 0
-          _options: []
-        - _name: Butter
-          _hasAsset: 0
-          _options: []
-    - _name: Lettuce
-      _hasAsset: 0
+    - _name: Carrots
+      _hasAsset: 1
       _options: []
-    - _name: Green Salad
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Lettuce
-          _hasAsset: 0
-          _options: []
-        - _name: Tomatoes
-          _hasAsset: 0
-          _options: []
-    - _name: Quiche Filling
-      _hasAsset: 0
-      _options:
-      - Items:
-        - _name: Spinach
-          _hasAsset: 0
-          _options: []
-      - Items:
-        - _name: Spam
-          _hasAsset: 0
-          _options: []
     - _name: Carrot Cake
       _hasAsset: 0
       _options:
@@ -641,6 +598,25 @@ MonoBehaviour:
         - _name: Carrots
           _hasAsset: 0
           _options: []
+    - _name: Canned Tuna
+      _hasAsset: 1
+      _options: []
+    - _name: Canned Beans
+      _hasAsset: 1
+      _options: []
+    - _name: Buttered Toast
+      _hasAsset: 0
+      _options:
+      - Items:
+        - _name: Bread
+          _hasAsset: 0
+          _options: []
+        - _name: Butter
+          _hasAsset: 0
+          _options: []
+    - _name: Butter
+      _hasAsset: 1
+      _options: []
     - _name: Bread Pudding
       _hasAsset: 0
       _options:
@@ -657,6 +633,48 @@ MonoBehaviour:
         - _name: Milk
           _hasAsset: 0
           _options: []
-    - _name: Onions
+    - _name: Bread
       _hasAsset: 1
       _options: []
+    - _name: Beef Stew
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Ground Beef
+          _hasAsset: 0
+          _options: []
+        - _name: Potatoes
+          _hasAsset: 0
+          _options: []
+        - _name: Carrots
+          _hasAsset: 0
+          _options: []
+        - _name: Onions
+          _hasAsset: 0
+          _options: []
+    - _name: Apples
+      _hasAsset: 1
+      _options: []
+    - _name: Apple Pie
+      _hasAsset: 1
+      _options:
+      - Items:
+        - _name: Pie Crust
+          _hasAsset: 0
+          _options:
+          - Items:
+            - _name: donkey
+              _hasAsset: 0
+              _options: []
+            - _name: Flour
+              _hasAsset: 0
+              _options: []
+            - _name: Butter
+              _hasAsset: 0
+              _options: []
+        - _name: Apples
+          _hasAsset: 0
+          _options: []
+        - _name: Sugar
+          _hasAsset: 0
+          _options: []

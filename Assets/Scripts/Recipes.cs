@@ -38,6 +38,24 @@ public class Recipes : ScriptableObject
         Debug.Log(JsonUtility.ToJson(wrapper));
     }
 
+    [ContextMenu("Sort Recipes A-Z")]
+    public void SortRecipesAlphabetically()
+    {
+        recipeRoots = recipeRoots.ToList().OrderByDescending( (i) => i.Name).ToArray();
+    }
+
+    [ContextMenu("Sort Items A-Z")]
+    public void SortItemsAlphabetically()
+    {
+        itemTree.Items.Sort(delegate (ItemTree.Item item1, ItemTree.Item item2)
+        {
+            if (item1 == null && item2 == null) return 0;
+            if (item1 == null) return -1;
+            if (item2 == null) return 1;
+            return item2.Name.CompareTo(item1.Name);
+        });
+    }
+
     public string[] GetAllIngredientNames(bool onlyWithAssets)
     {
         var ingredients = GetAllIngredients(onlyWithAssets);
@@ -57,9 +75,13 @@ public class Recipes : ScriptableObject
     private void AddItemToIngredients(ItemTree.Item item, List<ItemTree.Item> ingredients, bool onlyWithAssets)
     {
         if (item == null) return;
+        item = itemTree.GetItem(item.Name);
         if (!ingredients.Contains(item))
         {
-            if (!onlyWithAssets || item.HasAsset) ingredients.Add(item);
+            if (!onlyWithAssets || item.HasAsset)
+            {
+                ingredients.Add(item);
+            }
         }
         foreach (var option in item.Options)
         {

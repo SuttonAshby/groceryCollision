@@ -38,7 +38,7 @@ public class RecipesEditor : Editor
         }
 
         var items = _recipes.itemTree.Items;
-        _itemNames = items.Select((i) => i.Name).ToArray();
+        _itemNames = items.Select((i) => i.Name).OrderBy( (n) => n).ToArray();
 
         EditorGUILayout.LabelField("Recipes", header, GUILayout.Height(24));
         if (_recipes.recipeRoots != null)
