@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Linq;
 
 [System.Serializable]
@@ -18,7 +19,7 @@ public class ItemTree
     }
 
     [System.Serializable]
-    public class Item
+    public class Item : IEquatable<Item>
     {
         [SerializeField]
         private string _name;
@@ -39,15 +40,23 @@ public class ItemTree
             this.Options.Add(new Options(item));
         }
 
-        // public void RemoveOption(Option option)
-        // {
-        //     if (!Options.Contains(option)) return;
-        //     Options.Remove(option);
-        // }
-
         public void SetDone()
         {
             this.Done = true;
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null) return false;
+            var otherItem = other as Item;
+            if (otherItem == null) return false;
+            return otherItem.Name == this.Name;
+        }
+
+        public bool Equals(Item other)
+        {
+            if (other == null) return false;
+            return other.Name == this.Name;
         }
 
     }
