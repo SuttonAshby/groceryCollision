@@ -1,13 +1,28 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchController : MonoBehaviour 
-{
-
-    public float flingVelocityFactor = 0.5f;
+{   
+    public float flingVelocityFactor = 0.1f;
     public float holdHeight = 5f;
-    private Dictionary<int, GameObject> gameObjectsByFinger = new Dictionary<int, GameObject>();
+
+    private class TouchedObject
+    {
+        public GameObject gameObject;
+        public Vector2 averageVelocity = Vector3.zero;
+
+        private float averageWeightingFactor = 0.33f;
+
+        public void TrackVelocity(Touch touch)
+        {
+            averageVelocity = (averageVelocity * (1 - averageWeightingFactor)) + 
+                (averageWeightingFactor * touch.deltaPosition / touch.deltaTime);
+        }
+    }
+
+    private Dictionary<int, TouchedObject> gameObjectsByFinger = new Dictionary<int, TouchedObject>();
 
     private void Update()
     {
@@ -20,6 +35,9 @@ public class TouchController : MonoBehaviour
                     break;
                 case TouchPhase.Moved:
                     HandleMove(touch);
+                    break;
+                case TouchPhase.Stationary:
+                    HandleStationary(touch);
                     break;
                 case TouchPhase.Ended:
                 case TouchPhase.Canceled:
@@ -37,7 +55,10 @@ public class TouchController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             var gameObject = hit.rigidbody.gameObject;
-            gameObjectsByFinger.Add(touch.fingerId, gameObject);
+            gameObjectsByFinger.Add(touch.fingerId, new TouchedObject()
+            {
+                gameObject = gameObject
+            });
 
             var cart = gameObject.GetComponent<Cart>();
             if (cart != null)
@@ -54,11 +75,9 @@ public class TouchController : MonoBehaviour
 
     private void HandleMove(Touch touch)
     {   
-        var fingerId = touch.fingerId;
-        if (gameObjectsByFinger.ContainsKey(fingerId))
+        ForTouchedObject(touch, (touchedObject, fingerId) =>
         {
-            var gameObject = gameObjectsByFinger[fingerId];
-
+            var gameObject = touchedObject.gameObject;
             var cart = gameObject.GetComponent<Cart>();
             if (cart != null)
             {
@@ -70,6 +89,7 @@ public class TouchController : MonoBehaviour
             }
             else
             {
+                touchedObject.TrackVelocity(touch);
                 var touchPoint = Camera.main.ScreenToWorldPoint(new Vector3(
                     touch.position.x,
                     touch.position.y,
@@ -87,16 +107,21 @@ public class TouchController : MonoBehaviour
                     gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
                 }
             }
-        }
+        });
+    }
+
+    private void HandleStationary(Touch touch) {
+        ForTouchedObject(touch, (gameObject, fingerId) =>
+        {
+
+        });
     }
 
     private void HandleRelease(Touch touch)
     {
-        var fingerId = touch.fingerId;
-        if (gameObjectsByFinger.ContainsKey(fingerId))
+        ForTouchedObject(touch, (touchedObject, fingerId) =>
         {
-            var gameObject = gameObjectsByFinger[fingerId];
-
+            var gameObject = touchedObject.gameObject;
             var cart = gameObject.GetComponent<Cart>();
             if (cart != null)
             {
@@ -110,7 +135,7 @@ public class TouchController : MonoBehaviour
                 var rigidbody = gameObject.GetComponent<Rigidbody>();
                 rigidbody.useGravity = true;
                 
-                var velocityVector = touch.deltaPosition / touch.deltaTime * flingVelocityFactor;
+                var velocityVector = touchedObject.averageVelocity * flingVelocityFactor;
                 
                 rigidbody.AddForce(new Vector3(
                     velocityVector.x,
@@ -118,7 +143,7 @@ public class TouchController : MonoBehaviour
                     velocityVector.y
                 ));         
             }
-        }
+        });
     }
 
     private bool IsTouchOverObject(Touch touch, GameObject go)
@@ -128,5 +153,14 @@ public class TouchController : MonoBehaviour
         RaycastHit hit;
         return Physics.Raycast(ray, out hit) &&
             hit.rigidbody.gameObject == go;
+    }
+
+    private void ForTouchedObject(Touch touch, Action<TouchedObject, int> action) 
+    {
+        var fingerId = touch.fingerId;
+        if (gameObjectsByFinger.ContainsKey(fingerId))
+        {
+            action(gameObjectsByFinger[fingerId], fingerId);
+        }
     }
 }
