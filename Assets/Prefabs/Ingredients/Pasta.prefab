@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5402337510637979172}
   - component: {fileID: 6411885667657019862}
   m_Layer: 0
-  m_Name: PastaBag
+  m_Name: Pasta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,4 +154,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8861c286d9702c641ab3e0a79bfbfa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: pastaBag
+  id: Pasta
