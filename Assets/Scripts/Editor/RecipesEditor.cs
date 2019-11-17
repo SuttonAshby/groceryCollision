@@ -13,6 +13,7 @@ public class RecipesEditor : Editor
     private string[] _itemNames;
     private int _recipeToAdd;
     private Dictionary<string,int> _selectedItems;
+    private bool _dirty;
 
     private void OnEnable()
     {
@@ -71,6 +72,11 @@ public class RecipesEditor : Editor
         }
         EditorGUI.indentLevel = 0;
 
+        if (_dirty)
+        {
+            EditorUtility.SetDirty(_recipes);
+            _dirty = false;
+        }
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -83,6 +89,7 @@ public class RecipesEditor : Editor
         var item = _recipes.itemTree.GetItem(_itemNames[_recipeToAdd]);
         if (item == null) return;
         _recipes.recipeRoots[_recipes.recipeRoots.Length - 1] = item;
+        _dirty = true;
     }
 
     private void RemoveRecipe(int index)
@@ -90,6 +97,7 @@ public class RecipesEditor : Editor
         var list = _recipes.recipeRoots.ToList();
         list.RemoveAt(index);
         _recipes.recipeRoots = list.ToArray();
+        _dirty = true;
     }
 
     private void DrawItem(ItemTree.Item item, ItemTree.Item parent, int depth)
@@ -142,6 +150,7 @@ public class RecipesEditor : Editor
         }
         _recipes.itemTree.AppendToRoot(_itemToAdd);
         _itemToAdd = "";
+        _dirty = true;
     }
 
     private void AddChild(ItemTree.Item item)
@@ -169,6 +178,7 @@ public class RecipesEditor : Editor
             return;
         }
         item.AddChild(child);
+        _dirty = true;
     }
 
     private void RemoveChild(ItemTree.Item parent, ItemTree.Item child)
@@ -184,6 +194,7 @@ public class RecipesEditor : Editor
         {
             parent.RemoveChild(child);
         }
+        _dirty = true;
     }
 
 }

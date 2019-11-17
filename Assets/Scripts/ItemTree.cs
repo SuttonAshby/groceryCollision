@@ -40,6 +40,7 @@ public class ItemTree
     }
 
     public Item Root;
+    [SerializeField]
     private List<Item> items;
     public List<Item> Items { get => items; }
     public ItemTree()
