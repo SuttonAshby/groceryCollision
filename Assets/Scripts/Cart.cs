@@ -77,7 +77,7 @@ public class Cart : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string otherName = other.gameObject.name;
-        manager.GotItem(otherName);
+        manager.GotItem(this, otherName);
         Destroy(other.gameObject);
     }
 }
