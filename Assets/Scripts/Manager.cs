@@ -38,8 +38,8 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) cart1.Lockout();
-        if (Input.GetMouseButton(1) && cart2) cart2.Extend();
-        else if(cart2) cart2.Retract();
+        // if (Input.GetMouseButtonDown(0)) cart1.Lockout();
+        // if (Input.GetMouseButton(1)) cart2.Extend();
+        // else cart2.Retract();
     }
 }

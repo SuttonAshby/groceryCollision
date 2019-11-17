@@ -93,7 +93,7 @@ public class TouchController : MonoBehaviour
                 var touchPoint = Camera.main.ScreenToWorldPoint(new Vector3(
                     touch.position.x,
                     touch.position.y,
-                    holdHeight
+                    Camera.main.transform.position.y - holdHeight
                 ));
                 gameObject.transform.position = touchPoint;
 
