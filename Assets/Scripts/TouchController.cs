@@ -70,12 +70,12 @@ public class TouchController : MonoBehaviour
             }
             else
             {
-                var touchPoint = ScreenToWorldPoint(touch.position);
-                gameObject.transform.position = new Vector3(
-                    touchPoint.x,
-                    holdHeight,
-                    touchPoint.z
-                );
+                var touchPoint = Camera.main.ScreenToWorldPoint(new Vector3(
+                    touch.position.x,
+                    touch.position.y,
+                    holdHeight
+                ));
+                gameObject.transform.position = touchPoint;
 
                 var rotation = Quaternion.identity;
                 if (touch.deltaPosition.x > 0)
@@ -128,14 +128,5 @@ public class TouchController : MonoBehaviour
         RaycastHit hit;
         return Physics.Raycast(ray, out hit) &&
             hit.rigidbody.gameObject == go;
-    }
-
-    private Vector3 ScreenToWorldPoint(Vector2 screenPos)
-    {
-        return Camera.main.ScreenToWorldPoint(new Vector3(
-            screenPos.x,
-            screenPos.y,
-            holdHeight
-        ));
     }
 }
