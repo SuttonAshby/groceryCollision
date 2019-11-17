@@ -38,6 +38,12 @@ public class Recipes : ScriptableObject
         Debug.Log(JsonUtility.ToJson(wrapper));
     }
 
+    public string[] GetAllIngredientNames(bool onlyWithAssets)
+    {
+        var ingredients = GetAllIngredients(onlyWithAssets);
+        return ingredients.Select( (i) => i.Name).ToArray();
+    }
+
     public ItemTree.Item[] GetAllIngredients(bool onlyWithAssets)
     {
         var ingredients = new List<ItemTree.Item>();
