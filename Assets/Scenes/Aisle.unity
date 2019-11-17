@@ -126,7 +126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-368622
+  m_Name: pb_Mesh-212538
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -614,56 +614,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647022077542182438, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647022077542182438, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647022077542182438, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 362325622444590385, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: ItemShrinkFactor
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 362325622444590385, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: CartMoveTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 362325622303743326, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: ItemShrinkFactor
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 362325622303743326, guid: f45bc682591e2ef4da67c07c5ac3dfee,
-        type: 3}
-      propertyPath: CartMoveTime
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45bc682591e2ef4da67c07c5ac3dfee, type: 3}
