@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
     public SpawnManagerScriptableObject data;
+    public Recipes player1Recipes;
+    public Recipes player2Recipes;
 
     void Start()
     {
@@ -34,7 +38,7 @@ public class Spawner : MonoBehaviour
         //     // Creates an instance of the prefab at the current spawn point.
         //     GameObject currentEntity = Instantiate(entityToSpawn, gameObject.transform);
 
-        //     // Sets the name of the instantiated entity to be the string defined in the ScriptableObject and then appends it with a unique number. 
+        //     // Sets the name of the instantiated entity to be the string defined in the ScriptableObject and then appends it with a unique number.
         //     currentEntity.name = spawnManagerValues.prefabName + instanceNumber;
 
         //     // Moves to the next spawn point index. If it goes out of range, it wraps back to the start.
@@ -44,4 +48,20 @@ public class Spawner : MonoBehaviour
         // }
 
     }
+
+    private string[] GetPlayerSpawnItems(float includeChance = 1f)
+    {
+        var player1Items = player1Recipes.GetAllIngredientNames(true);
+        var player2Items = player2Recipes.GetAllIngredientNames(true);
+        var list = new List<string>(player1Items);
+        foreach (var player2Item in player2Items)
+        {
+            if (Array.IndexOf(player1Items, player2Item) < 0 || includeChance == 1f || UnityEngine.Random.value < includeChance)
+            {
+                list.Add(player2Item);
+            }
+        }
+        return list.ToArray();
+    }
+
 }
