@@ -630,6 +630,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.04
       objectReference: {fileID: 0}
+    - target: {fileID: 362325622444590385, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: ItemShrinkFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622444590385, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: CartMoveTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4647022077419091529, guid: f45bc682591e2ef4da67c07c5ac3dfee,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -644,6 +654,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622303743326, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: ItemShrinkFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 362325622303743326, guid: f45bc682591e2ef4da67c07c5ac3dfee,
+        type: 3}
+      propertyPath: CartMoveTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45bc682591e2ef4da67c07c5ac3dfee, type: 3}
@@ -707,6 +727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 65fc44a07f395e64997e68dfbbdc0951, type: 2}
+  player1Recipes: {fileID: 0}
+  player2Recipes: {fileID: 0}
 --- !u!4 &1665973224
 Transform:
   m_ObjectHideFlags: 0
