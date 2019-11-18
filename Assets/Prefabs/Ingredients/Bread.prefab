@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8861c286d9702c641ab3e0a79bfbfa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: breadBag
+  id: Bread
 --- !u!54 &3016224700013178590
 Rigidbody:
   m_ObjectHideFlags: 0

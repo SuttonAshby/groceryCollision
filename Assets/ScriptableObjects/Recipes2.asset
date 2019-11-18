@@ -197,7 +197,7 @@ MonoBehaviour:
       _hasAsset: 1
       _options: []
     - _name: Tomato Sauce
-      _hasAsset: 1
+      _hasAsset: 0
       _options:
       - Items:
         - _name: Tomatoes
@@ -223,7 +223,7 @@ MonoBehaviour:
           _hasAsset: 0
           _options: []
     - _name: Spam
-      _hasAsset: 0
+      _hasAsset: 1
       _options: []
     - _name: Sloppy Joes
       _hasAsset: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
       _hasAsset: 0
       _options: []
     - _name: Peas
-      _hasAsset: 1
+      _hasAsset: 0
       _options: []
     - _name: Peaches
       _hasAsset: 0

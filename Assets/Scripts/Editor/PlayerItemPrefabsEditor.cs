@@ -20,7 +20,7 @@ public class PlayerItemPrefabsEditor : Editor
 
     private void AddAllPlayerItemPrefabs()
     {
-        var assetGuids = AssetDatabase.FindAssets("t:prefab", new[] { "Assets/Prefabs/Environment/Blocks" });
+        var assetGuids = AssetDatabase.FindAssets("t:prefab", new[] { "Assets/Prefabs/Ingredients" });
         var foundItems = new List<ObjectID>();
         foreach (var assetGuid in assetGuids)
         {
