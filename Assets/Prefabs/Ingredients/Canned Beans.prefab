@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2892847906244546789}
   - component: {fileID: 2478586541907412022}
   - component: {fileID: 6577251734063278278}
+  - component: {fileID: 3093058244797631608}
+  - component: {fileID: 2235487251490286895}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -78,6 +80,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3093058244797631608
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746273702371660883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 4a7635063af5da94fa36967f943db13d, type: 3}
+--- !u!54 &2235487251490286895
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746273702371660883}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8507567764303835598
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,8 +120,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4632983655603635165}
   - component: {fileID: 2478831895860556552}
-  - component: {fileID: 2993125148144987719}
-  - component: {fileID: 5849031933876872147}
   m_Layer: 0
   m_Name: Canned Beans
   m_TagString: Untagged
@@ -125,33 +155,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Canned Beans
---- !u!54 &2993125148144987719
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8507567764303835598}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!64 &5849031933876872147
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8507567764303835598}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
