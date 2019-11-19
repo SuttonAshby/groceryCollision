@@ -43,10 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b3c6f95fad2a1459d77cdddf6f4120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Recipes: {fileID: 11400000, guid: a05b217283a674944b4b3bc702115fd1, type: 2}
-  player2Recipes: {fileID: 11400000, guid: 91652983c995f438bb9213c3f62b47af, type: 2}
-  cart1: {fileID: 362325622444590385}
-  cart2: {fileID: 362325622303743326}
+  player1Refs:
+    recipes: {fileID: 11400000, guid: a05b217283a674944b4b3bc702115fd1, type: 2}
+    cart: {fileID: 362325622444590385}
+    hud: {fileID: 0}
+  player2Refs:
+    recipes: {fileID: 11400000, guid: 91652983c995f438bb9213c3f62b47af, type: 2}
+    cart: {fileID: 362325622303743326}
+    hud: {fileID: 0}
 --- !u!1 &8950854603936517909
 GameObject:
   m_ObjectHideFlags: 0

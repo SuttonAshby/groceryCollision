@@ -2,35 +2,33 @@
 
 public class Manager : MonoBehaviour
 {
-    public Recipes player1Recipes;
-    public Recipes player2Recipes;
-    public Cart cart1;
-    public Cart cart2;  
-    public WinLoseCanvas winLoseCanvas;
+
+    [System.Serializable]
+    public class PlayerRefs
+    {
+        public Recipes recipes;
+        public Cart cart;
+        public PlayerHUD hud;
+    }
+
+    public PlayerRefs player1Refs;
+    public PlayerRefs player2Refs;
 
     public void GotItem(Cart cart, string itemName)
     {
         print("Got " + itemName);
-        if (cart == cart1 && player1Recipes.itemTree.HasItem(itemName))
+        PlayerRefs player = null;
+        if (cart == player1Refs.cart) player = player1Refs;
+        else if (cart == player2Refs.cart) player = player2Refs;
+        else Debug.LogError("no player for cart");
+        if (player.recipes.itemTree.HasItem(itemName))
         {
-            player1Recipes.itemTree.SetItemDone(itemName);
-            if (player1Recipes.AreRecipesComplete())
+            player.recipes.itemTree.SetItemDone(itemName);
+            if (player.recipes.AreRecipesComplete())
             {
-                winLoseCanvas.Player1Win();
+                player.hud.PlayerWon();
             }
         }
-        else if (cart == cart2 && player2Recipes.itemTree.HasItem(itemName))
-        {
-            player2Recipes.itemTree.SetItemDone(itemName);
-            if (player2Recipes.AreRecipesComplete())
-            {
-                winLoseCanvas.Player2Win();
-            }
-        }
-        else
-        {
-            print("Bad Stuff");
-        }
-
     }
+
 }
