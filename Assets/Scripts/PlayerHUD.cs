@@ -10,5 +10,19 @@ public class PlayerHUD : MonoBehaviour
 
     }
 
+    public void PlayerLost()
+    {
+
+    }
+
+    public void CollectedItem(string itemName)
+    {
+
+    }
+
+    public void CollectedTrash()
+    {
+
+    }
 
 }

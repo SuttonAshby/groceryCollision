@@ -123,6 +123,7 @@ public class ItemTree
     {
         var item = GetItem(itemName);
         if (item == null) return false;
+        if (IsItemDone(itemName)) return false;
         item.SetDone();
         return true;
     }

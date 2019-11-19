@@ -16,17 +16,35 @@ public class Manager : MonoBehaviour
 
     public void GotItem(Cart cart, string itemName)
     {
-        print("Got " + itemName);
         PlayerRefs player = null;
-        if (cart == player1Refs.cart) player = player1Refs;
-        else if (cart == player2Refs.cart) player = player2Refs;
-        else Debug.LogError("no player for cart");
+        PlayerRefs otherPlayer = null;
+
+        if (cart == player1Refs.cart)
+        {
+            player = player1Refs;
+            otherPlayer = player2Refs;
+        }
+        else if (cart == player2Refs.cart)
+        {
+            player = player2Refs;
+            otherPlayer = player1Refs;
+        }
+
         if (player.recipes.itemTree.HasItem(itemName))
         {
-            player.recipes.itemTree.SetItemDone(itemName);
+            var itemNeeded = player.recipes.itemTree.SetItemDone(itemName);
+            if (itemNeeded)
+            {
+                player.hud.CollectedItem(itemName);
+            }
+            else
+            {
+                player.hud.CollectedTrash();
+            }
             if (player.recipes.AreRecipesComplete())
             {
                 player.hud.PlayerWon();
+                otherPlayer.hud.PlayerWon();
             }
         }
     }
