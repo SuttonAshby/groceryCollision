@@ -29,7 +29,8 @@ public class Spawner : MonoBehaviour
                     spawnPos =  gameObject.transform.childCount;
                 }
                 Debug.Log("spawning from: " + spawnPos);
-                Instantiate(el.prefab, gameObject.transform.GetChild(spawnPos-1).position, Quaternion.identity);
+                var tr = Instantiate(el.prefab, gameObject.transform.GetChild(spawnPos-1).position, Quaternion.identity);
+                AddMouseEventSender(tr.gameObject);
                 spawnPos--;
             }
         }
@@ -43,9 +44,20 @@ public class Spawner : MonoBehaviour
             if(spawnPos == 0){
                 spawnPos =  gameObject.transform.childCount;
             }
-            Instantiate(item, gameObject.transform.GetChild(spawnPos - 1).position, Quaternion.identity);
+            var obj = Instantiate(item, gameObject.transform.GetChild(spawnPos - 1).position, Quaternion.identity);
+            AddMouseEventSender(obj);
             spawnPos--;
         }
+    }
+
+    private void AddMouseEventSender(GameObject obj)
+    {
+#if !UNITY_EDITOR
+        return;
+#endif
+        var rb = obj.GetComponent<Rigidbody>();
+        if (rb == null) rb = obj.GetComponentInChildren<Rigidbody>();
+        if (rb != null) rb.gameObject.AddComponent<MouseEventSender>();
     }
 
     private void SpawnTrash(){
@@ -60,7 +72,8 @@ public class Spawner : MonoBehaviour
                     spawnPos =  gameObject.transform.childCount;
                 }
                 // Debug.Log("spawning from: " + spawnPos);
-                Instantiate(el.prefab, gameObject.transform.GetChild(spawnPos-1).position, Quaternion.identity);
+                var tr = Instantiate(el.prefab, gameObject.transform.GetChild(spawnPos-1).position, Quaternion.identity);
+                AddMouseEventSender(tr.gameObject);
                 spawnPos--;
             }
         }
