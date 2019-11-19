@@ -7,6 +7,7 @@ public class Cart : MonoBehaviour
     public Vector3 CartMoveDist;
     public float CartMoveTime;
     public float ItemShrinkFactor;
+    public Vector2 cartSize;
 
     private Manager manager;
     private bool Moving;
@@ -86,25 +87,44 @@ public class Cart : MonoBehaviour
         }
     }
 
-    public void AddItem(GameObject go)
+    public void AddItem(Rigidbody rb)
     {
-        if (moveState == MoveState.Inside)
-        {
-            manager.GotItem(this, go.name);
-            go.transform.localScale = go.transform.localScale / ItemShrinkFactor;
+        if (moveState != MoveState.Inside) return;
+        var obj = rb.gameObject;
+        var objectID = FindObjectID(obj);
+        if (objectID == null) return;
 
-            RaycastHit hit;
-            if (Physics.Raycast(go.transform.position, Vector3.down, out hit))
-            {
-                Destroy(go.GetComponent<Rigidbody>());
-                go.transform.position = new Vector3(
-                    hit.point.x,
-                    hit.point.y + (go.GetComponent<Collider>().bounds.size.y / 2),
-                    hit.point.z
-                );
+        manager.GotItem(this, objectID.id);
+        var coll = rb.GetComponent<Collider>();
+        if (coll != null) Destroy(coll);
+        Destroy(rb);
+        var tr = objectID.transform;
+        tr.SetParent(transform);
 
-                go.transform.SetParent(transform);
-            }
-        }
+        var destination = new Vector3(
+            (-0.5f + Random.value) * cartSize.x,
+            (-0.5f + Random.value) * cartSize.y,
+            0f);
+        tr.DOLocalMove(destination, 0.5f);
+        tr.DOScale(tr.localScale / ItemShrinkFactor, 0.5f);
     }
+
+    private ObjectID FindObjectID(GameObject obj)
+    {
+        var objectID = obj.GetComponent<ObjectID>();
+        if (objectID == null)
+        {
+            var parent = obj.transform.parent;
+            if (parent != null) objectID = parent.gameObject.GetComponent<ObjectID>();
+        }
+        if (objectID == null) objectID = obj.GetComponentInChildren<ObjectID>();
+        return objectID;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position, new Vector3(cartSize.x, 0f, cartSize.y));
+    }
+
 }
