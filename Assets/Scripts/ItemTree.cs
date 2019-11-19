@@ -50,6 +50,11 @@ public class ItemTree
             this.Done = true;
         }
 
+        public void Reset()
+        {
+            this.Done = false;
+        }
+
         public override bool Equals(object other)
         {
             if (other == null) return false;
@@ -126,6 +131,11 @@ public class ItemTree
         if (IsItemDone(itemName)) return false;
         item.SetDone();
         return true;
+    }
+
+    public void Reset()
+    {
+        foreach (var item in items) item.Reset();
     }
 
     public bool IsItemDone(string itemName)

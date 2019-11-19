@@ -105,7 +105,8 @@ public class Cart : MonoBehaviour
             (-0.5f + Random.value) * cartSize.x,
             (-0.5f + Random.value) * cartSize.y,
             0f);
-        tr.DOLocalMove(destination, 0.5f);
+        destination += transform.position;
+        tr.DOMove(destination, 0.5f);
         tr.DOScale(tr.localScale / ItemShrinkFactor, 0.5f);
     }
 

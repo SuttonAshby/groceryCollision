@@ -65,10 +65,9 @@ public class MouseController : MonoBehaviour
     {
         var rb = obj.GetComponent<Rigidbody>();
         if (rb == null) return;
-        var gameObject = rb.gameObject;
         _heldObject = new HeldObject()
         {
-            gameObject = gameObject
+            gameObject = obj
         };
 
         rb.useGravity = false;
@@ -82,6 +81,11 @@ public class MouseController : MonoBehaviour
     {
         if (_heldObject == null) return;
         if (_heldObject.gameObject != obj) return;
+        if (_heldObject.gameObject.GetComponent<Rigidbody>() == null)
+        {
+            _heldObject = null;
+            return;
+        }
         var gameObject = _heldObject.gameObject;
         var deltaPosition = (Vector2)Input.mousePosition - _lastMousePosition;
         var deltaTime = Time.time - _lastMouseTime;
@@ -112,6 +116,11 @@ public class MouseController : MonoBehaviour
     {
         if (_heldObject == null) return;
         if (_heldObject.gameObject != obj) return;
+        if (_heldObject.gameObject.GetComponent<Rigidbody>() == null)
+        {
+            _heldObject = null;
+            return;
+        }
 
         var gameObject = _heldObject.gameObject;
 

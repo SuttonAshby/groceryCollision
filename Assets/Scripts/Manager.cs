@@ -14,6 +14,12 @@ public class Manager : MonoBehaviour
     public PlayerRefs player1Refs;
     public PlayerRefs player2Refs;
 
+    private void Start()
+    {
+        player1Refs.recipes.Reset();
+        player2Refs.recipes.Reset();
+    }
+
     public void GotItem(Cart cart, string itemName)
     {
         PlayerRefs player = null;

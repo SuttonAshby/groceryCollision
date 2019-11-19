@@ -56,6 +56,11 @@ public class Recipes : ScriptableObject
         });
     }
 
+    public void Reset()
+    {
+        itemTree.Reset();
+    }
+
     public bool AreRecipesComplete()
     {
         foreach (var recipe in recipeRoots)

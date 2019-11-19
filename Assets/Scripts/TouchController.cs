@@ -91,6 +91,11 @@ public class TouchController : MonoBehaviour
             }
             else
             {
+                if (touchedObject.gameObject.GetComponent<Rigidbody>() == null)
+                {
+                    gameObjectsByFinger.Remove(fingerId);
+                    return;
+                }
                 touchedObject.TrackVelocity(touch);
                 var touchPoint = Camera.main.ScreenToWorldPoint(new Vector3(
                     touch.position.x,
