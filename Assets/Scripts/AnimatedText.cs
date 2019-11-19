@@ -13,7 +13,7 @@ public class AnimatedText : MonoBehaviour
     {
         text.text = message;
         gameObject.SetActive(true);
-        animator.SetTrigger("play");
+        animator.SetTrigger("appear");
     }
 
     public void AnimationComplete()
