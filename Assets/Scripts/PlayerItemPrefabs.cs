@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerItemPrefabs : ScriptableObject
 {
 
-    public ObjectID[] items;
+    public Ingredient[] items;
 
     public GameObject[] GetPrefabsForIds(string[] ids)
     {

@@ -16,7 +16,9 @@ public class MouseController : MonoBehaviour
 
     private class HeldObject
     {
-        public GameObject gameObject;
+        public GameObject colliderGameObject;
+        public Rigidbody rigidbody;
+        public Ingredient ingredient;
         public Vector2 averageVelocity = Vector3.zero;
 
         private float averageWeightingFactor = 0.33f;
@@ -65,14 +67,21 @@ public class MouseController : MonoBehaviour
     {
         var rb = obj.GetComponent<Rigidbody>();
         if (rb == null) return;
+
+        var ingredient = rb.gameObject.GetComponent<Ingredient>();
+        if (ingredient == null) return;
+
         _heldObject = new HeldObject()
         {
-            gameObject = obj
+            colliderGameObject = obj,
+            rigidbody = rb,
+            ingredient = ingredient
         };
 
+        ingredient.Hold();
         rb.useGravity = false;
         rb.isKinematic = true;
-        gameObject.transform.DOMoveY(holdHeight, 0.1f);
+        rb.DOMoveY(Camera.main.transform.position.y - holdHeight, 0.1f);
         _lastMousePosition = Input.mousePosition;
         _lastMouseTime = Time.time;
     }
@@ -80,13 +89,8 @@ public class MouseController : MonoBehaviour
     private void MouseDrag(GameObject obj)
     {
         if (_heldObject == null) return;
-        if (_heldObject.gameObject != obj) return;
-        if (_heldObject.gameObject.GetComponent<Rigidbody>() == null)
-        {
-            _heldObject = null;
-            return;
-        }
-        var gameObject = _heldObject.gameObject;
+        if (_heldObject.colliderGameObject != obj) return;
+
         var deltaPosition = (Vector2)Input.mousePosition - _lastMousePosition;
         var deltaTime = Time.time - _lastMouseTime;
 
@@ -96,16 +100,16 @@ public class MouseController : MonoBehaviour
             Input.mousePosition.y,
             Camera.main.transform.position.y - holdHeight
         ));
-        gameObject.transform.position = touchPoint;
+        _heldObject.rigidbody.MovePosition(touchPoint);
 
         var rotation = Quaternion.identity;
         if (deltaPosition.x > 0)
         {
-            gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+            _heldObject.rigidbody.MoveRotation(Quaternion.Euler(0, -90, 0));
         }
         else if (deltaPosition.x < 0)
         {
-            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            _heldObject.rigidbody.MoveRotation(Quaternion.Euler(0, 90, 0));
         }
 
         _lastMousePosition = Input.mousePosition;
@@ -115,36 +119,20 @@ public class MouseController : MonoBehaviour
     private void MouseUp(GameObject obj)
     {
         if (_heldObject == null) return;
-        if (_heldObject.gameObject != obj) return;
-        if (_heldObject.gameObject.GetComponent<Rigidbody>() == null)
-        {
-            _heldObject = null;
-            return;
-        }
+        if (_heldObject.colliderGameObject != obj) return;
 
-        var gameObject = _heldObject.gameObject;
-
-        var rigidbody = gameObject.GetComponent<Rigidbody>();
-        rigidbody.useGravity = true;
-        rigidbody.isKinematic = false;
+        _heldObject.ingredient.Release();
+        _heldObject.rigidbody.useGravity = true;
+        _heldObject.rigidbody.isKinematic = false;
 
         var velocityVector = _heldObject.averageVelocity * flingVelocityFactor;
 
-        rigidbody.AddForce(new Vector3(
+        _heldObject.rigidbody.AddForce(new Vector3(
             velocityVector.x,
-            rigidbody.velocity.y,
+            _heldObject.rigidbody.velocity.y,
             velocityVector.y
         ));
         _heldObject = null;
-    }
-
-    private bool IsTouchOverObject(Touch touch, GameObject go)
-    {
-        var ray = Camera.main.ScreenPointToRay(touch.position);
-
-        RaycastHit hit;
-        return Physics.Raycast(ray, out hit) &&
-            hit.rigidbody.gameObject == go;
     }
 
 }

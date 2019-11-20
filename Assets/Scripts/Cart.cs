@@ -7,7 +7,7 @@ public class Cart : MonoBehaviour
     public Vector3 CartMoveDist;
     public float CartMoveTime;
     public float ItemShrinkFactor;
-    public Vector2 cartSize;
+    public Transform ingredientMovePoint;
 
     private Manager manager;
     private bool Moving;
@@ -87,45 +87,26 @@ public class Cart : MonoBehaviour
         }
     }
 
-    public void AddItem(Rigidbody rb)
+    public bool CanCollect()
     {
-        if (moveState != MoveState.Inside) return;
-        var obj = rb.gameObject;
-        var objectID = FindObjectID(obj);
-        if (objectID == null) return;
+        return moveState == MoveState.Inside;
+    }
 
-        manager.GotItem(this, objectID.id);
-        var coll = rb.GetComponent<Collider>();
-        if (coll != null) Destroy(coll);
-        Destroy(rb);
-        var tr = objectID.transform;
-        tr.SetParent(transform);
+    public void AddItem(Ingredient ingredient)
+    {
+        manager.GotItem(this, ingredient.id);
 
-        var destination = new Vector3(
-            (-0.5f + Random.value) * cartSize.x,
-            (-0.5f + Random.value) * cartSize.y,
-            0f);
-        destination += transform.position;
+        // var coll = ingredient.GetComponent<Collider>();
+        // if (coll != null) Destroy(coll);
+        // Destroy(rb);
+
+        var tr = ingredient.transform;
+        var destination = ingredientMovePoint.position;
         tr.DOMove(destination, 0.5f);
-        tr.DOScale(tr.localScale / ItemShrinkFactor, 0.5f);
-    }
-
-    private ObjectID FindObjectID(GameObject obj)
-    {
-        var objectID = obj.GetComponent<ObjectID>();
-        if (objectID == null)
+        tr.DOScale(tr.localScale / ItemShrinkFactor, 0.5f).OnComplete(() =>
         {
-            var parent = obj.transform.parent;
-            if (parent != null) objectID = parent.gameObject.GetComponent<ObjectID>();
-        }
-        if (objectID == null) objectID = obj.GetComponentInChildren<ObjectID>();
-        return objectID;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position, new Vector3(cartSize.x, 0f, cartSize.y));
+            ingredient.gameObject.layer = LayerMask.NameToLayer("CollectedItem");
+        });
     }
 
 }
