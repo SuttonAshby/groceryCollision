@@ -55,8 +55,14 @@ public class Spawner : MonoBehaviour
 #if !UNITY_EDITOR
         return;
 #endif
+        var coll = obj.GetComponent<Collider>();
+        if (coll == null) coll = obj.GetComponentInChildren<Collider>();
+        if (coll != null) coll.gameObject.AddComponent<MouseEventSender>();
+
+
         var rb = obj.GetComponent<Rigidbody>();
         if (rb == null) rb = obj.GetComponentInChildren<Rigidbody>();
+        if (rb.gameObject == coll.gameObject) return;
         if (rb != null) rb.gameObject.AddComponent<MouseEventSender>();
     }
 

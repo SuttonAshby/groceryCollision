@@ -9,17 +9,24 @@ public class Ingredient : MonoBehaviour
     private bool _isHeld;
     private float _releaseTime;
 
+    public bool CanHold()
+    {
+        if (_isCollected) return false;
+        if (_isHeld) return false;
+        return true;
+    }
+
     public void Hold()
     {
         _isHeld = true;
-        gameObject.layer = LayerMask.NameToLayer("HeldItem");
+        gameObject.SetLayerRecursively("HeldItem");
     }
 
     public void Release()
     {
         _isHeld = false;
         _releaseTime = Time.time;
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.SetLayerRecursively("Default");
     }
 
     public bool CanCollect()

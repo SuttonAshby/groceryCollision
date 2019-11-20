@@ -3,7 +3,6 @@ using DG.Tweening;
 
 public class Cart : MonoBehaviour
 {
-    public Collider shotBlocker;
     public Vector3 CartMoveDist;
     public float CartMoveTime;
     public float ItemShrinkFactor;
@@ -19,6 +18,12 @@ public class Cart : MonoBehaviour
         Inside
     }
     private MoveState moveState;
+    private Rigidbody rigidbody;
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
@@ -37,18 +42,14 @@ public class Cart : MonoBehaviour
         {
             case MoveState.Inside:
                 moveState = MoveState.MovingOut;
-                transform.DOMove(CartMoveDist, CartMoveTime)
+                rigidbody.DOMove(CartMoveDist, CartMoveTime)
                     .SetRelative(true)
-                    .OnStart(() =>
-                    {
-                        shotBlocker.enabled = true;
-                    })
                     .OnComplete(() => moveState = MoveState.Outside)
-                    .OnRewind(() => moveState = MoveState.Inside) ;
+                    .OnRewind(() => moveState = MoveState.Inside);
                 break;
             case MoveState.MovingIn:
                 moveState = MoveState.MovingOut;
-                transform.DOFlip();
+                rigidbody.DOFlip();
                 break;
         }
     }
@@ -59,17 +60,16 @@ public class Cart : MonoBehaviour
         {
             case MoveState.Outside:
                 moveState = MoveState.MovingIn;
-                transform.DOMove(-CartMoveDist, CartMoveTime)
+                rigidbody.DOMove(-CartMoveDist, CartMoveTime)
                     .SetRelative(true)
                     .OnComplete(() => {
-                        shotBlocker.enabled = false;
                         moveState = MoveState.Inside;
                     })
                     .OnRewind(() => moveState = MoveState.Outside);
                 break;
             case MoveState.MovingOut:
                 moveState = MoveState.MovingIn;
-                transform.DOFlip();
+                rigidbody.DOFlip();
                 break;
         }
     }
@@ -105,7 +105,7 @@ public class Cart : MonoBehaviour
         tr.DOMove(destination, 0.5f);
         tr.DOScale(tr.localScale / ItemShrinkFactor, 0.5f).OnComplete(() =>
         {
-            ingredient.gameObject.layer = LayerMask.NameToLayer("CollectedItem");
+            ingredient.gameObject.SetLayerRecursively("CollectedItems");
         });
     }
 

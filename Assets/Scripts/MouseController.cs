@@ -70,6 +70,7 @@ public class MouseController : MonoBehaviour
 
         var ingredient = rb.gameObject.GetComponent<Ingredient>();
         if (ingredient == null) return;
+        if (!ingredient.CanHold()) return;
 
         _heldObject = new HeldObject()
         {
@@ -105,11 +106,11 @@ public class MouseController : MonoBehaviour
         var rotation = Quaternion.identity;
         if (deltaPosition.x > 0)
         {
-            _heldObject.rigidbody.MoveRotation(Quaternion.Euler(0, -90, 0));
+            _heldObject.rigidbody.MoveRotation(Quaternion.Euler(0, 90, 0));
         }
         else if (deltaPosition.x < 0)
         {
-            _heldObject.rigidbody.MoveRotation(Quaternion.Euler(0, 90, 0));
+            _heldObject.rigidbody.MoveRotation(Quaternion.Euler(0, -90, 0));
         }
 
         _lastMousePosition = Input.mousePosition;
