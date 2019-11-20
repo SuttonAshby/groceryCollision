@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2472922817565481610}
   - component: {fileID: 6589668928147928698}
   - component: {fileID: 4681930543406968948}
-  - component: {fileID: 8928250774922057079}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -59,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8933279843490006653, guid: 2cc6b9696d759f8419411af2f180a6d0, type: 3}
+  - {fileID: 2100000, guid: ce9765940226a472f8829b57a70c9fb3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,22 +93,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 2cc6b9696d759f8419411af2f180a6d0, type: 3}
---- !u!54 &8928250774922057079
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749616903530629871}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &8513158644792209266
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4647584480988781921}
   - component: {fileID: 4695427276036536298}
+  - component: {fileID: 8421350031815359298}
   m_Layer: 0
   m_Name: Quiche
   m_TagString: Untagged
@@ -134,7 +118,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8513158644792209266}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.269944, y: 6.3774195, z: 3.814074}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
@@ -155,3 +139,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Quiche
+--- !u!54 &8421350031815359298
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513158644792209266}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
