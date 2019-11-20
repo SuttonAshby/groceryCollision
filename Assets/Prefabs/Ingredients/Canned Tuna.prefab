@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3478182147391174356}
   - component: {fileID: 8936538689807545505}
+  - component: {fileID: 6742641745150830525}
   m_Layer: 0
   m_Name: Canned Tuna
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441253691216741575}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.2650414, y: 0.341134, z: -1.8933201}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
@@ -45,6 +46,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Canned Tuna
+--- !u!54 &6742641745150830525
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441253691216741575}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6202564218444915034
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +74,6 @@ GameObject:
   - component: {fileID: 5938809169256493375}
   - component: {fileID: 3118814967097253327}
   - component: {fileID: 5911589374463838360}
-  - component: {fileID: 5264694896909723617}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -72,13 +88,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6202564218444915034}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.59425145, y: -0.38323003, z: 0.38323003, w: 0.59425145}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3478182147391174356}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -24.364, y: -90.00001, z: 90.00001}
 --- !u!33 &5938809169256493375
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -139,19 +155,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 3650be62038b3d94b92de96cb90f0b28, type: 3}
---- !u!54 &5264694896909723617
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6202564218444915034}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

@@ -21,15 +21,15 @@ public class PlayerItemPrefabsEditor : Editor
     private void AddAllPlayerItemPrefabs()
     {
         var assetGuids = AssetDatabase.FindAssets("t:prefab", new[] { "Assets/Prefabs/Ingredients" });
-        var foundItems = new List<ObjectID>();
+        var foundItems = new List<Ingredient>();
         foreach (var assetGuid in assetGuids)
         {
             var path = AssetDatabase.GUIDToAssetPath(assetGuid);
-            var objectID = (ObjectID)AssetDatabase.LoadAssetAtPath(path, typeof(ObjectID));
+            var objectID = (Ingredient)AssetDatabase.LoadAssetAtPath(path, typeof(Ingredient));
             if (objectID != null) foundItems.Add(objectID);
         }
-        var spawner = target as PlayerItemPrefabs;
-        spawner.items = foundItems.ToArray();
+        var playerItemPrefabs = target as PlayerItemPrefabs;
+        playerItemPrefabs.items = foundItems.ToArray();
     }
 
 }

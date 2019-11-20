@@ -3,23 +3,25 @@ using System.Collections.Generic;
 
 public class CartCatcher : MonoBehaviour
 {
-    private Cart cart;
+    public Cart cart;
     private HashSet<Collider> caughtObjects = new HashSet<Collider>();
 
-    public void Start()
+    private void OnTriggerStay(Collider other)
     {
-        cart = GetComponentInParent<Cart>();
+        if (!cart.CanCollect()) return;
+
+        if (caughtObjects.Contains(other)) return;
+
+        if (other.attachedRigidbody == null) return;
+
+        var ingredient = other.attachedRigidbody.GetComponent<Ingredient>();
+        if (ingredient == null) return;
+
+        if (!ingredient.CanCollect()) return;
+
+        ingredient.Collect();
+        caughtObjects.Add(other);
+        cart.AddItem(ingredient);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!caughtObjects.Contains(other))
-        {
-            caughtObjects.Add(other);
-            if (other.attachedRigidbody != null)
-            {
-                cart.AddItem(other.attachedRigidbody);
-            }
-        }
-    }
 }
