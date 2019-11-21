@@ -126,7 +126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-168292
+  m_Name: pb_Mesh-36062
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -355,6 +355,16 @@ PrefabInstance:
       propertyPath: CartMoveDist.x
       value: -1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3777064403355267642, guid: 5274f0a24b00b4da9af52a70b5be0a04,
+        type: 3}
+      propertyPath: rejectForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777064403355267642, guid: 5274f0a24b00b4da9af52a70b5be0a04,
+        type: 3}
+      propertyPath: rejectVector.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5274f0a24b00b4da9af52a70b5be0a04, type: 3}
 --- !u!114 &511474717 stripped
@@ -557,8 +567,8 @@ Camera:
   m_GameObject: {fileID: 936020192}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -619,6 +629,89 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 936020194}
+--- !u!1 &942287537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942287540}
+  - component: {fileID: 942287539}
+  - component: {fileID: 942287538}
+  m_Layer: 0
+  m_Name: BGCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &942287538
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942287537}
+  m_Enabled: 1
+--- !u!20 &942287539
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942287537}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -5
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &942287540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942287537}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5548751, y: 3.8912153, z: -5.7018538}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &960782204
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flingVelocityFactor: 0.5
   holdHeight: 2
+  scaleUpFactor: 3
 --- !u!4 &960782206
 Transform:
   m_ObjectHideFlags: 0
@@ -930,6 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flingVelocityFactor: 0.1
   holdHeight: 2
+  scaleUpFactor: 2
   player1CartKey: 115
   player2CartKey: 97
   player1Cart: {fileID: 553430296}
@@ -1253,6 +1348,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3777064403355267642, guid: 5274f0a24b00b4da9af52a70b5be0a04,
+        type: 3}
+      propertyPath: rejectForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777064403355267642, guid: 5274f0a24b00b4da9af52a70b5be0a04,
+        type: 3}
+      propertyPath: rejectVector.x
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5274f0a24b00b4da9af52a70b5be0a04, type: 3}
 --- !u!1001 &3897682597699977519
@@ -1489,6 +1594,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 406240976}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1afa7586d9c7534c8460961378d044e, type: 3}
