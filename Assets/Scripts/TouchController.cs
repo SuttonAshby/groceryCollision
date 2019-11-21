@@ -68,6 +68,11 @@ public class TouchController : MonoBehaviour
             }
             else
             {
+                var ingredient = gameObject.GetComponent<Ingredient>();
+                if (ingredient == null) return;
+                if (!ingredient.CanHold()) return;
+
+                ingredient.Hold();
                 hit.rigidbody.useGravity = false;
                 hit.rigidbody.isKinematic = true;
                 gameObject.transform.DOMoveY(holdHeight, 0.1f);
@@ -107,11 +112,11 @@ public class TouchController : MonoBehaviour
                 var rotation = Quaternion.identity;
                 if (touch.deltaPosition.x > 0)
                 {
-                    gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
                 }
                 else if (touch.deltaPosition.x < 0)
                 {
-                    gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
                 }
             }
         });
@@ -138,6 +143,8 @@ public class TouchController : MonoBehaviour
             else
             {
                 gameObjectsByFinger.Remove(fingerId);
+
+                gameObject.GetComponent<Ingredient>().Release();
 
                 var rigidbody = gameObject.GetComponent<Rigidbody>();
                 rigidbody.useGravity = true;
