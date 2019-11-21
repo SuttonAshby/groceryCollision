@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8861c286d9702c641ab3e0a79bfbfa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Apple Pie
+  id: Garlic
   sounds:
   - {fileID: 8300000, guid: b52bd5a9fb4348f468e021b477263289, type: 3}
   - {fileID: 8300000, guid: dce93b9e6adc19041a87fc155ef7f1c6, type: 3}
