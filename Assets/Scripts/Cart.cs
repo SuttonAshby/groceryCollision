@@ -7,6 +7,8 @@ public class Cart : MonoBehaviour
     public float CartMoveTime;
     public float ItemShrinkFactor;
     public Transform ingredientMovePoint;
+    public float rejectForce;
+    public Vector3 rejectVector;
 
     private Manager manager;
     private bool Moving;
@@ -92,21 +94,30 @@ public class Cart : MonoBehaviour
         return moveState == MoveState.Inside;
     }
 
-    public void AddItem(Ingredient ingredient)
+    public bool AddItem(Ingredient ingredient)
     {
-        manager.GotItem(this, ingredient.id);
-
-        // var coll = ingredient.GetComponent<Collider>();
-        // if (coll != null) Destroy(coll);
-        // Destroy(rb);
-
-        var tr = ingredient.transform;
-        var destination = ingredientMovePoint.position;
-        tr.DOMove(destination, 0.2f);
-        tr.DOScale(tr.localScale / ItemShrinkFactor, 0.2f).OnComplete(() =>
+        if (manager.GotItem(this, ingredient.id))
         {
-            ingredient.gameObject.SetLayerRecursively("CollectedItems");
-        });
+            var tr = ingredient.transform;
+            var destination = ingredientMovePoint.position;
+            tr.DOMove(destination, 0.2f);
+            tr.DOScale(tr.localScale / ItemShrinkFactor, 0.2f).OnComplete(() =>
+            {
+                ingredient.gameObject.SetLayerRecursively("CollectedItems");
+            });
+            return true;
+        }
+        else
+        {
+            var rb = ingredient.GetComponent<Rigidbody>();
+            var dir = rejectVector;
+            var lateralDir = Vector3.Cross(dir, Vector3.back);
+            dir = Quaternion.AngleAxis(Random.Range(-45f, 45f), lateralDir) * dir;
+            var verticalDir = Vector3.Cross(dir, lateralDir);
+            dir = Quaternion.AngleAxis(Random.Range(-20f, 20f), verticalDir) * dir;
+            rb.AddForce(dir * rejectForce);
+            return false;
+        }
     }
 
 }

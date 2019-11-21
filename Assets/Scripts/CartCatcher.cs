@@ -28,12 +28,19 @@ public class CartCatcher : MonoBehaviour
         if (!ingredient.CanCollect()) return;
 
         ingredient.Collect();
-        caughtObjects.Add(other);
 
-        _audioSource.clip = sounds[Random.Range(0, sounds.Length)];
-        _audioSource.Play();
+        if (cart.AddItem(ingredient))
+        {
+            caughtObjects.Add(other);
 
-        cart.AddItem(ingredient);
+            _audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+            _audioSource.Play();
+        }
+        else
+        {
+            // cart rejected
+        }
+
     }
 
 }

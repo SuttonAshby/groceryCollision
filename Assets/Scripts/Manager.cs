@@ -22,7 +22,7 @@ public class Manager : MonoBehaviour
         player2Refs.recipes.Reset();
     }
 
-    public void GotItem(Cart cart, string itemName)
+    public bool GotItem(Cart cart, string itemName)
     {
         PlayerRefs player = null;
         PlayerRefs otherPlayer = null;
@@ -49,6 +49,7 @@ public class Manager : MonoBehaviour
             {
                 player.hud.CollectedTrash();
                 player.cart.Retract();
+                return false;
             }
             var result = player.recipes.UpdateRecipes();
             var delay = 1f;
@@ -68,7 +69,9 @@ public class Manager : MonoBehaviour
         {
             player.hud.CollectedTrash();
             player.cart.Retract();
+            return false;
         }
+        return true;
     }
 
     private IEnumerator ShowCompletedRecipe(PlayerHUD hud, string name, float delay)
