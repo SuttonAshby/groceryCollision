@@ -52,6 +52,8 @@ MonoBehaviour:
   player1Recipes: {fileID: 11400000, guid: a05b217283a674944b4b3bc702115fd1, type: 2}
   player2Recipes: {fileID: 11400000, guid: 91652983c995f438bb9213c3f62b47af, type: 2}
   playerItemPrefabs: {fileID: 11400000, guid: 60caefe4c3cec4f8ba6c5f6069311372, type: 2}
+  includeChance: 0.75
+  inclusionLoops: 2
 --- !u!1 &3897682596079825789
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +78,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3897682596079825789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.82, y: 0, z: 0}
+  m_LocalPosition: {x: 2.74, y: 0, z: -1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3897682596044061383}
@@ -106,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3897682596718886713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.42, y: 0, z: 0}
+  m_LocalPosition: {x: 1.08, y: 0, z: 1.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3897682596044061383}
@@ -136,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3897682596931308223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2, y: 0, z: 0}
+  m_LocalPosition: {x: -1.05, y: 0, z: -1.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3897682596044061383}
@@ -166,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3897682597233990011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.52, y: 0, z: 0}
+  m_LocalPosition: {x: -2.59, y: 0, z: 1.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3897682596044061383}

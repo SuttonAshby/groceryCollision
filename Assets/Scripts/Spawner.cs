@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
@@ -9,6 +10,9 @@ public class Spawner : MonoBehaviour
     public Recipes player1Recipes;
     public Recipes player2Recipes;
     public PlayerItemPrefabs playerItemPrefabs;
+
+    public float includeChance = 1f;
+    public float inclusionLoops = 1f;
 
     void Start()
     {
@@ -39,7 +43,7 @@ public class Spawner : MonoBehaviour
     private void SpawnOffList(){
         int spawnPos = gameObject.transform.childCount;
         //tweak float to increase scarcity
-        var items = GetPlayerSpawnItems(1f);
+        var items = GetPlayerSpawnItems();
         foreach(var item in items){
             if(spawnPos == 0){
                 spawnPos =  gameObject.transform.childCount;
@@ -90,27 +94,32 @@ public class Spawner : MonoBehaviour
     [ContextMenu("Log Player Items")]
     private void LogPlayerItems()
     {
-        var items = GetPlayerSpawnItems(1f);
+        var items = GetPlayerSpawnItems();
         foreach (var item in items) Debug.Log(item);
     }
 
-    private GameObject[] GetPlayerSpawnItems(float includeChance = 1f)
+    private GameObject[] GetPlayerSpawnItems()
     {
-        var names = GetPlayerSpawnItemNames(includeChance);
+        var names = GetPlayerSpawnItemNames();
         var prefabs = playerItemPrefabs.GetPrefabsForIds(names);
         return prefabs;
     }
 
-    private string[] GetPlayerSpawnItemNames(float includeChance = 1f)
+    private string[] GetPlayerSpawnItemNames()
     {
         var player1Items = player1Recipes.GetAllIngredientNames(true);
         var player2Items = player2Recipes.GetAllIngredientNames(true);
-        var list = new List<string>(player1Items);
-        foreach (var player2Item in player2Items)
+        var items = player1Items.Concat(player2Items);
+
+        var list = new List<string>();
+        for(var i = 0; i < inclusionLoops; i++)
         {
-            if (Array.IndexOf(player1Items, player2Item) < 0 || includeChance == 1f || UnityEngine.Random.value < includeChance)
+            foreach (var item in items)
             {
-                list.Add(player2Item);
+                if (list.IndexOf(item) < 0 || UnityEngine.Random.value <= includeChance)
+                {
+                    list.Add(item);
+                }
             }
         }
         return list.ToArray();
