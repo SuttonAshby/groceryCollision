@@ -48,6 +48,7 @@ public class Manager : MonoBehaviour
             else
             {
                 player.hud.CollectedTrash();
+                player.cart.Retract();
             }
             var result = player.recipes.UpdateRecipes();
             var delay = 1f;

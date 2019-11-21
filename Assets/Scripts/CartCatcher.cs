@@ -4,7 +4,15 @@ using System.Collections.Generic;
 public class CartCatcher : MonoBehaviour
 {
     public Cart cart;
+    public AudioClip[] sounds;
+
     private HashSet<Collider> caughtObjects = new HashSet<Collider>();
+    private AudioSource _audioSource;
+
+    public void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -21,6 +29,10 @@ public class CartCatcher : MonoBehaviour
 
         ingredient.Collect();
         caughtObjects.Add(other);
+
+        _audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+        _audioSource.Play();
+
         cart.AddItem(ingredient);
     }
 

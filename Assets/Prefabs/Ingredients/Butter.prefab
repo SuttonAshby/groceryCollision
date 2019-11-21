@@ -46,6 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Butter
+  sounds:
+  - {fileID: 8300000, guid: 8d10ca2f1c91bf44282d712583606cc2, type: 3}
+  - {fileID: 8300000, guid: 12afba59bc552c946aa10351dbdeb188, type: 3}
+  - {fileID: 8300000, guid: 6660669b3dc41c64abac63ee42014b84, type: 3}
+  - {fileID: 8300000, guid: 0d0786798b3c9f545a1d04eeb5d0c981, type: 3}
+  - {fileID: 8300000, guid: 721f7c27cfe594b46bcbebb786112891, type: 3}
+  - {fileID: 8300000, guid: fe523e0e8d097f6468d84b88c14b933e, type: 3}
+  - {fileID: 8300000, guid: 3fb245cc128f19643bfa1929fcfcc422, type: 3}
+  - {fileID: 8300000, guid: 7b4908cd5eac19d44ab2425441e73433, type: 3}
+  - {fileID: 8300000, guid: 8c8d56303e2e35b4e815bfc71143d3f4, type: 3}
+  - {fileID: 8300000, guid: b14da64565522e54eaa76a51170c70c3, type: 3}
 --- !u!54 &1744676394006062224
 Rigidbody:
   m_ObjectHideFlags: 0

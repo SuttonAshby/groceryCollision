@@ -139,6 +139,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Garlic
+  sounds:
+  - {fileID: 8300000, guid: 0393a7604af64284293932ead0587a23, type: 3}
+  - {fileID: 8300000, guid: 8eda3edbb10f55e42ba0bfbd64665239, type: 3}
+  - {fileID: 8300000, guid: 46dfd548851408942857130e0ad3f4b8, type: 3}
+  - {fileID: 8300000, guid: 186db296b288f6742ab19b14b90f00fa, type: 3}
+  - {fileID: 8300000, guid: f23b2db3ec2de014185ec04569519792, type: 3}
+  - {fileID: 8300000, guid: ce5900bd42d87f744b73432a9ddfa72e, type: 3}
+  - {fileID: 8300000, guid: 357af98c2f3f8fd49a4496a3f7aebdb8, type: 3}
+  - {fileID: 8300000, guid: eb142a730fc27ca4fafabb70ba9a318c, type: 3}
+  - {fileID: 8300000, guid: bc971bd03d2e81644a3ce3f0baf1a2e2, type: 3}
+  - {fileID: 8300000, guid: 965fd9739fc025849a500e847dcacc1d, type: 3}
 --- !u!54 &3591916702366413346
 Rigidbody:
   m_ObjectHideFlags: 0

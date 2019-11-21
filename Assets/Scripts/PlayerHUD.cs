@@ -84,4 +84,5 @@ public class PlayerHUD : MonoBehaviour
         pool.Add(text);
         return text;
     }
+
 }
