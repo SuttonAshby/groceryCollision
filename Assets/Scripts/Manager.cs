@@ -67,6 +67,7 @@ public class Manager : MonoBehaviour
         else
         {
             player.hud.CollectedTrash();
+            player.cart.Retract();
         }
     }
 
