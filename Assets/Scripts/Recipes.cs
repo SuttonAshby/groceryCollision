@@ -12,12 +12,6 @@ public class RecipeUpdateResult
 [CreateAssetMenu]
 public class Recipes : ScriptableObject
 {
-    [System.Serializable]
-    public class RecipeWrapper
-    {
-        public ItemTree.Item[] recipes;
-    }
-
     public ItemTree.Item[] recipeRoots;
     public ItemTree itemTree;
 
@@ -38,11 +32,32 @@ public class Recipes : ScriptableObject
     }
 
     [ContextMenu("Export JSON")]
-    public void ExportJson()
-    {
-        var wrapper = new RecipeWrapper();
-        wrapper.recipes = recipeRoots;
-        Debug.Log(JsonUtility.ToJson(wrapper));
+    public void TestExport() {
+        Debug.Log(ExportRecipeToJson());
+    }
+
+    public string ExportRecipeToJson() {
+        string ret = "";
+        foreach(var item in recipeRoots) {
+            ret += "," + ItemJSON(item);
+        }
+        return "{" + ret.Substring(1) + "}";
+    }
+
+    private string ItemJSON(ItemTree.Item item) {
+        string ret = "\"" + item.Name + "\":";
+        if(item.Options.Count == 0) {
+            return ret + "null";
+        }
+        List<ItemTree.Item> items = item.Options.ElementAt(0).Items;
+        if(items.Count == 0) {
+            return ret + "null";
+        }
+        ret += "{";
+        foreach(var i in items) {
+            ret += ItemJSON(i) + ",";
+        }
+        return ret.Substring(0, ret.Length-1) + "}";
     }
 
     [ContextMenu("Sort Recipes A-Z")]
