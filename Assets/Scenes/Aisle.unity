@@ -126,7 +126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-119456
+  m_Name: pb_Mesh-168292
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1098,7 +1098,8 @@ AudioSource:
   m_GameObject: {fileID: 1728581535}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1177158199962403901, guid: b181d65559846664e93632b6641fdfc8,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 2f49027dc3d38674ea6b36a5ee04debc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
