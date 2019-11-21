@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -47,12 +49,36 @@ public class Manager : MonoBehaviour
             {
                 player.hud.CollectedTrash();
             }
-            if (player.recipes.AreRecipesComplete())
+            var result = player.recipes.UpdateRecipes();
+            var delay = 1f;
+            foreach (var completedRecipe in result.completedRecipes)
+            {
+                StartCoroutine(ShowCompletedRecipe(player.hud, completedRecipe, delay));
+                delay += 2f;
+            }
+            if (result.allRecipesComplete)
             {
                 player.hud.PlayerWon();
-                otherPlayer.hud.PlayerWon();
+                otherPlayer.hud.PlayerLost();
+                StartCoroutine(GameOver());
             }
         }
+        else
+        {
+            player.hud.CollectedTrash();
+        }
+    }
+
+    private IEnumerator ShowCompletedRecipe(PlayerHUD hud, string name, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        hud.CompletedRecipe(name);
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(1);
     }
 
 }
