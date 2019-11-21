@@ -39,7 +39,7 @@ public class WinLoseCanvas : MonoBehaviour
     }
 
     public void RestartGame() {
-        SceneManager.LoadScene("StartScreen", LoadSceneMode.Single);
+        SceneManager.LoadScene("StartScreen");
     }
 
     void Update() {

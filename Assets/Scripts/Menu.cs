@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadSceneAsync("Aisle", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Aisle");
         _audioSource.Play();
     }
 }
