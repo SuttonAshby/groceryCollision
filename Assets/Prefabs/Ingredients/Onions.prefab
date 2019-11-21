@@ -139,6 +139,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Onions
+  sounds:
+  - {fileID: 8300000, guid: b52bd5a9fb4348f468e021b477263289, type: 3}
+  - {fileID: 8300000, guid: dce93b9e6adc19041a87fc155ef7f1c6, type: 3}
+  - {fileID: 8300000, guid: 5dcf2ec219d37e24180f64906e7f5818, type: 3}
+  - {fileID: 8300000, guid: 70a594861fe96d44cb1cec1e8ed1e897, type: 3}
+  - {fileID: 8300000, guid: 87d68968c94945149bbc0dae2dc1db1a, type: 3}
+  - {fileID: 8300000, guid: 11ca715cccd6f2740b71c7cbba988e89, type: 3}
+  - {fileID: 8300000, guid: 2b2be9de45286034fbdd408c9c9f9599, type: 3}
+  - {fileID: 8300000, guid: f0c74d19cf6c242438bbda1feb613091, type: 3}
+  - {fileID: 8300000, guid: 75ee0393195e58545b50cd6596e82d05, type: 3}
+  - {fileID: 8300000, guid: ad676f3270aacc24d9d2819cabee397f, type: 3}
+  - {fileID: 8300000, guid: e780ca2058184b2409d5d323ba09dc3b, type: 3}
+  - {fileID: 8300000, guid: b2bf01cbfe8e9a6438904996da79c965, type: 3}
+  - {fileID: 8300000, guid: 22abe632e86e43a4aa068106cef28b49, type: 3}
+  - {fileID: 8300000, guid: 736a2f53443c14f40828566f5ad65cbf, type: 3}
 --- !u!54 &2195499102567394960
 Rigidbody:
   m_ObjectHideFlags: 0

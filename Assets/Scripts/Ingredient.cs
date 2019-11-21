@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Ingredient : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class Ingredient : MonoBehaviour
     public void Awake()
     {
         _audioSource = gameObject.AddComponent<AudioSource>();
+        var audioMixer = Resources.Load<AudioMixer>("AudioMixer");
+        var audioMixGroup = audioMixer.FindMatchingGroups("SFX");
+        _audioSource.outputAudioMixerGroup = audioMixGroup[0];
+
     }
 
     public bool CanHold()

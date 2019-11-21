@@ -139,6 +139,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Mayonaise
+  sounds:
+  - {fileID: 8300000, guid: 25e07c97651806b46bfaa665e1b11d4d, type: 3}
+  - {fileID: 8300000, guid: 79499fcd911cfc34e86a82afd272a6c1, type: 3}
+  - {fileID: 8300000, guid: dc96501b43b142946a289eeb4b03ddbc, type: 3}
+  - {fileID: 8300000, guid: a7bc305c7f818fc4d8596fd3073eab5d, type: 3}
+  - {fileID: 8300000, guid: 813531fd4e59825419dfe5f00105aa79, type: 3}
+  - {fileID: 8300000, guid: b2b7550826525aa4094c939ccebdf1c5, type: 3}
+  - {fileID: 8300000, guid: b2c0cb0dc8d026e43a6e99c76ceefb4f, type: 3}
+  - {fileID: 8300000, guid: d579b81c55798854685623449b66b891, type: 3}
+  - {fileID: 8300000, guid: 5e63158846573144eba70a7024d29a98, type: 3}
 --- !u!54 &3124381982391502214
 Rigidbody:
   m_ObjectHideFlags: 0
