@@ -9,6 +9,7 @@ public class MouseController : MonoBehaviour
 
     public float flingVelocityFactor = 0.1f;
     public float holdHeight = 5f;
+    public float scaleUpFactor = 2f;
     public KeyCode player1CartKey;
     public KeyCode player2CartKey;
     public Cart player1Cart;
@@ -90,6 +91,7 @@ public class MouseController : MonoBehaviour
             Camera.main.transform.position.y - holdHeight
         ));
         rb.DOMove(dest, 0.1f);
+        rb.transform.DOScale(ingredient.DefaultScale * scaleUpFactor, 0.1f);
         _lastMousePosition = Input.mousePosition;
         _lastMouseTime = Time.time;
     }
@@ -139,6 +141,7 @@ public class MouseController : MonoBehaviour
 
         var velocityVector = _heldObject.averageVelocity * flingVelocityFactor;
 
+        _heldObject.rigidbody.transform.DOScale(_heldObject.ingredient.DefaultScale, 0.1f);
         _heldObject.rigidbody.AddForce(new Vector3(
             velocityVector.x,
             _heldObject.rigidbody.velocity.y,

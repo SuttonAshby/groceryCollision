@@ -7,6 +7,7 @@ public class TouchController : MonoBehaviour
 {
     public float flingVelocityFactor = 0.1f;
     public float holdHeight = 5f;
+    public float scaleUpFactor = 2f;
 
     private class TouchedObject
     {
@@ -93,6 +94,7 @@ public class TouchController : MonoBehaviour
                     Camera.main.transform.position.y - holdHeight
                 ));
                 rb.DOMove(dest, 0.1f);
+                rb.transform.DOScale(ingredient.DefaultScale * scaleUpFactor, 0.1f);
             }
         }
     }
@@ -153,7 +155,7 @@ public class TouchController : MonoBehaviour
         {
             var obj = touchedObject.obj;
             gameObjectsByFinger.Remove(fingerId);
-            
+
             var cartOpener = obj.GetComponent<CartOpener>();
             if (cartOpener != null)
             {
@@ -168,6 +170,7 @@ public class TouchController : MonoBehaviour
 
                 var velocityVector = touchedObject.averageVelocity * flingVelocityFactor;
 
+                touchedObject.rigidbody.transform.DOScale(touchedObject.ingredient.DefaultScale, 0.1f);
                 touchedObject.rigidbody.AddForce(new Vector3(
                     velocityVector.x,
                     touchedObject.rigidbody.velocity.y,

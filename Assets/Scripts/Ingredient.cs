@@ -8,6 +8,8 @@ public class Ingredient : MonoBehaviour
     public string id;
     public AudioClip[] sounds = new AudioClip[0];
 
+    public Vector3 DefaultScale { get; private set; }
+
     private AudioSource _audioSource;
     private bool _isCollected;
     private bool _isHeld;
@@ -19,7 +21,7 @@ public class Ingredient : MonoBehaviour
         var audioMixer = Resources.Load<AudioMixer>("AudioMixer");
         var audioMixGroup = audioMixer.FindMatchingGroups("SFX");
         _audioSource.outputAudioMixerGroup = audioMixGroup[0];
-
+        DefaultScale = transform.localScale;
     }
 
     public bool CanHold()
@@ -54,12 +56,12 @@ public class Ingredient : MonoBehaviour
         _isCollected = true;
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionEnter(Collision other)
     {
         if (sounds.Length > 0)
         {
             _audioSource.clip = sounds[Random.Range(0, sounds.Length)];
-            _audioSource.Play();    
+            _audioSource.Play();
         }
     }
 }

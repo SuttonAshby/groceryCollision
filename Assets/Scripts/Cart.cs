@@ -101,7 +101,7 @@ public class Cart : MonoBehaviour
             var tr = ingredient.transform;
             var destination = ingredientMovePoint.position;
             tr.DOMove(destination, 0.2f);
-            tr.DOScale(tr.localScale / ItemShrinkFactor, 0.2f).OnComplete(() =>
+            tr.DOScale(ingredient.DefaultScale / ItemShrinkFactor, 0.2f).OnComplete(() =>
             {
                 ingredient.gameObject.SetLayerRecursively("CollectedItems");
             });
@@ -115,7 +115,7 @@ public class Cart : MonoBehaviour
             dir = Quaternion.AngleAxis(Random.Range(-45f, 45f), lateralDir) * dir;
             var verticalDir = Vector3.Cross(dir, lateralDir);
             dir = Quaternion.AngleAxis(Random.Range(-20f, 20f), verticalDir) * dir;
-            rb.AddForce(dir * rejectForce);
+            rb.AddForce(dir * rejectForce, ForceMode.Impulse);
             return false;
         }
     }
