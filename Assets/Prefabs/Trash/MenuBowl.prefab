@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6924567057867052480}
   - component: {fileID: 8136197692460356352}
   - component: {fileID: 6054987367049473349}
-  - component: {fileID: 1170853865916960495}
+  - component: {fileID: 2272037200385673606}
   m_Layer: 0
   m_Name: MenuBowl
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: d0b25a0bca68d0e48ac789e6738ae3cf, type: 3}
---- !u!114 &1170853865916960495
+--- !u!114 &2272037200385673606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,3 +124,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: trash
+  sounds:
+  - {fileID: 8300000, guid: 25e07c97651806b46bfaa665e1b11d4d, type: 3}
+  - {fileID: 8300000, guid: 79499fcd911cfc34e86a82afd272a6c1, type: 3}
+  - {fileID: 8300000, guid: dc96501b43b142946a289eeb4b03ddbc, type: 3}
+  - {fileID: 8300000, guid: a7bc305c7f818fc4d8596fd3073eab5d, type: 3}
+  - {fileID: 8300000, guid: 813531fd4e59825419dfe5f00105aa79, type: 3}
+  - {fileID: 8300000, guid: b2b7550826525aa4094c939ccebdf1c5, type: 3}
+  - {fileID: 8300000, guid: b2c0cb0dc8d026e43a6e99c76ceefb4f, type: 3}
+  - {fileID: 8300000, guid: d579b81c55798854685623449b66b891, type: 3}
+  - {fileID: 8300000, guid: 5e63158846573144eba70a7024d29a98, type: 3}
