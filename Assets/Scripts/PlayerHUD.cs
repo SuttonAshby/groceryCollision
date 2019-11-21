@@ -8,10 +8,24 @@ public class PlayerHUD : MonoBehaviour
 
     public AnimatedText gameOverTextPrefab;
     public AnimatedText collectedItemTextPrefab;
+    public AnimatedText completedRecipeTextPrefab;
     public AnimatedText collectedTrashTextPrefab;
 
+    private List<AnimatedText> _completedRecipeTexts;
     private List<AnimatedText> _collectedItemTexts;
     private List<AnimatedText> _collectedTrashTexts;
+
+    private int _trashTextIndex;
+    private string[] _trashTexts = new string[]
+    {
+        "OOPS",
+        "NOPE",
+        "TRASH",
+        "WRONG",
+        "TRY AGAIN",
+        "WASTE OF $$",
+        "DON'T NEED IT"
+    };
 
     public void PlayerWon()
     {
@@ -31,10 +45,19 @@ public class PlayerHUD : MonoBehaviour
         text.Play(string.Format("{0}!", itemName));
     }
 
+    public void CompletedRecipe(string itemName)
+    {
+        var text = GetAnimatedText(completedRecipeTextPrefab, _completedRecipeTexts);
+        text.Play(string.Format("{0}!", itemName));
+    }
+
     public void CollectedTrash()
     {
         var text = GetAnimatedText(collectedTrashTextPrefab, _collectedTrashTexts);
-        text.Play("OOPS!");
+        var msg = _trashTexts[_trashTextIndex];
+        _trashTextIndex++;
+        if (_trashTextIndex >= _trashTexts.Length) _trashTextIndex = 0;
+        text.Play(msg);
     }
 
     private AnimatedText GetAnimatedText(AnimatedText prefab, List<AnimatedText> pool)

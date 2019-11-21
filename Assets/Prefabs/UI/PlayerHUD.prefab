@@ -74,5 +74,7 @@ MonoBehaviour:
     type: 3}
   collectedItemTextPrefab: {fileID: 4904723858797961057, guid: 956aabfec53324afe87b461efe12ded3,
     type: 3}
+  completedRecipeTextPrefab: {fileID: 4904723858797961057, guid: 104c517af7b38420c8ad92dca18951f7,
+    type: 3}
   collectedTrashTextPrefab: {fileID: 4904723858797961057, guid: 7589a6300941b43f6ba71013b0fab99b,
     type: 3}
