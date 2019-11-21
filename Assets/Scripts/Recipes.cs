@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-// using
+
+public class RecipeUpdateResult
+{
+    public bool allRecipesComplete;
+    public string[] completedRecipes;
+}
 
 [CreateAssetMenu]
 public class Recipes : ScriptableObject
@@ -15,6 +20,8 @@ public class Recipes : ScriptableObject
 
     public ItemTree.Item[] recipeRoots;
     public ItemTree itemTree;
+
+    private List<string> _completedRecipes;
 
     [ContextMenu("Log All Asset Ingredients")]
     public void LogAllAssetIngredients()
@@ -59,15 +66,28 @@ public class Recipes : ScriptableObject
     public void Reset()
     {
         itemTree.Reset();
+        _completedRecipes = new List<string>();
     }
 
-    public bool AreRecipesComplete()
+    public RecipeUpdateResult UpdateRecipes()
     {
+        var allRecipesComplete = true;
+        var completedRecipes = new List<string>();
         foreach (var recipe in recipeRoots)
         {
-            if (!itemTree.IsItemDone(recipe.Name)) return false;
+            var complete = itemTree.IsItemDone(recipe.Name);
+            if (complete && !_completedRecipes.Contains(recipe.Name))
+            {
+                _completedRecipes.Add(recipe.Name);
+                completedRecipes.Add(recipe.Name);
+            }
+            if (!complete) allRecipesComplete = false;
         }
-        return true;
+        return new RecipeUpdateResult()
+        {
+            allRecipesComplete = allRecipesComplete,
+            completedRecipes = completedRecipes.ToArray()
+        };
     }
 
     public string[] GetAllIngredientNames(bool onlyWithAssets)

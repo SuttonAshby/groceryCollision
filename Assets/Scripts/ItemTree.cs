@@ -142,21 +142,53 @@ public class ItemTree
     {
         var item = GetItem(itemName);
         if (item == null) return false;
-        if (!item.Done) return false;
+        if (item.Done) return true;
+        var anyOptionDone = false;
         foreach (var option in item.Options)
         {
-            var anyDone = false;
+            var allChildrenDone = true;
             foreach (var child in option.Items)
             {
-                if (IsItemDone(child.Name))
+                if (!IsItemDone(child.Name))
                 {
-                    anyDone = true;
+                    allChildrenDone = false;
                     break;
                 }
             }
-            if (!anyDone) return false;
+            if (allChildrenDone)
+            {
+                anyOptionDone = true;
+                break;
+            }
         }
-        return true;
+        return anyOptionDone;
+    }
+
+    public void LogItemReport(string itemName)
+    {
+        var item = GetItem(itemName);
+        if (item == null)
+        {
+            L.og("bad item");
+            return;
+        }
+        var sb = new System.Text.StringBuilder();
+        GetItemReport(itemName, sb);
+        L.og(sb.ToString());
+    }
+
+    private void GetItemReport(string itemName, System.Text.StringBuilder sb)
+    {
+        var item = GetItem(itemName);
+        if (item == null) sb.AppendLine($"{itemName}: null");
+        else sb.AppendLine($"{itemName}: {item.Done}");
+        foreach (var option in item.Options)
+        {
+            foreach (var child in option.Items)
+            {
+                GetItemReport(child.Name, sb);
+            }
+        }
     }
 
 }

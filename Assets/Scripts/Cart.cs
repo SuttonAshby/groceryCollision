@@ -102,8 +102,8 @@ public class Cart : MonoBehaviour
 
         var tr = ingredient.transform;
         var destination = ingredientMovePoint.position;
-        tr.DOMove(destination, 0.5f);
-        tr.DOScale(tr.localScale / ItemShrinkFactor, 0.5f).OnComplete(() =>
+        tr.DOMove(destination, 0.2f);
+        tr.DOScale(tr.localScale / ItemShrinkFactor, 0.2f).OnComplete(() =>
         {
             ingredient.gameObject.SetLayerRecursively("CollectedItems");
         });
