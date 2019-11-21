@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfd87f66cc231d40b677572e5bc6de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flingVelocityFactor: 0.1
+  flingVelocityFactor: 0.5
   holdHeight: 2
 --- !u!4 &960782206
 Transform:
