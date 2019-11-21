@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 6867366243303039357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.6663804, y: 4.437902, z: 5.0672836}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 105921593850626134}
   m_Father: {fileID: 0}
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Spam
+  sounds: []
 --- !u!54 &1965589443582011790
 Rigidbody:
   m_ObjectHideFlags: 0
