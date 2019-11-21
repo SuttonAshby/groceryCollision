@@ -139,6 +139,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Milk
+  sounds:
+  - {fileID: 8300000, guid: 94df9868c31eca64793e015be549c388, type: 3}
+  - {fileID: 8300000, guid: 224e318ef5f91e04294903c8171fe0e9, type: 3}
+  - {fileID: 8300000, guid: b1e14ff8097cc374e8636aece320a243, type: 3}
+  - {fileID: 8300000, guid: 9f84a71d947a91848adfa7206e762a3a, type: 3}
+  - {fileID: 8300000, guid: a47c0920fc15f1049acc1a13ef801eea, type: 3}
+  - {fileID: 8300000, guid: ae21f137c435e2b46b2514819af31ced, type: 3}
+  - {fileID: 8300000, guid: 0ee059198949994459f73c2be980678b, type: 3}
+  - {fileID: 8300000, guid: a049f1725caab7045905e0868496681d, type: 3}
+  - {fileID: 8300000, guid: fd87277ef96e50649b5d7072fee45324, type: 3}
 --- !u!54 &5846702038008683125
 Rigidbody:
   m_ObjectHideFlags: 0
