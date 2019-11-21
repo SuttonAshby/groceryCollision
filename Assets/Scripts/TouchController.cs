@@ -105,11 +105,12 @@ public class TouchController : MonoBehaviour
             var cartOpener = obj.GetComponent<CartOpener>();
             if (cartOpener != null)
             {
-                if (!IsTouchOverObject(touch, gameObject))
-                {
-                    cartOpener.cart.Retract();
-                    gameObjectsByFinger.Remove(fingerId);
-                }
+                // Nice to have but not worth the trouble of getting right currently
+                // if (!IsTouchOverObject(touch, obj))
+                // {
+                //     cartOpener.cart.Retract();
+                //     gameObjectsByFinger.Remove(fingerId);
+                // }
             }
             else
             {
@@ -182,7 +183,7 @@ public class TouchController : MonoBehaviour
 
         RaycastHit hit;
         return Physics.Raycast(ray, out hit) &&
-            hit.rigidbody.gameObject == go;
+            hit.collider.gameObject == go;
     }
 
     private void ForTouchedObject(Touch touch, Action<TouchedObject, int> action)
