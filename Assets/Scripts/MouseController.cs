@@ -82,7 +82,12 @@ public class MouseController : MonoBehaviour
         ingredient.Hold();
         rb.useGravity = false;
         rb.isKinematic = true;
-        rb.DOMoveY(Camera.main.transform.position.y - holdHeight, 0.1f);
+        var dest = Camera.main.ScreenToWorldPoint(new Vector3(
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+            Camera.main.transform.position.y - holdHeight
+        ));
+        rb.DOMove(dest, 0.1f);
         _lastMousePosition = Input.mousePosition;
         _lastMouseTime = Time.time;
     }
