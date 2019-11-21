@@ -45,13 +45,19 @@ public class Manager : MonoBehaviour
             }
             else
             {
-                player.hud.CollectedTrash();
+                player.hud.CollectedTrash("Extra!");
+                player.cart.Retract();
             }
             if (player.recipes.AreRecipesComplete())
             {
                 player.hud.PlayerWon();
                 otherPlayer.hud.PlayerWon();
             }
+        }
+        else
+        {
+            player.hud.CollectedTrash("Unneeded!");
+            player.cart.Retract();
         }
     }
 

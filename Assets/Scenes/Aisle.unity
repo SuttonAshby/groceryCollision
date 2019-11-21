@@ -126,7 +126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-274432
+  m_Name: pb_Mesh-119456
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -568,9 +568,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.1
+    y: 0
     width: 1
-    height: 0.8
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45

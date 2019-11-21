@@ -31,10 +31,10 @@ public class PlayerHUD : MonoBehaviour
         text.Play(string.Format("{0}!", itemName));
     }
 
-    public void CollectedTrash()
+    public void CollectedTrash(string message)
     {
         var text = GetAnimatedText(collectedTrashTextPrefab, _collectedTrashTexts);
-        text.Play("OOPS!");
+        text.Play(message);
     }
 
     private AnimatedText GetAnimatedText(AnimatedText prefab, List<AnimatedText> pool)
