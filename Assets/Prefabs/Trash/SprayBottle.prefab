@@ -124,3 +124,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: trash
+  sounds:
+  - {fileID: 8300000, guid: 8d1caa456257e6f4cabc3e6232b7e690, type: 3}
+  - {fileID: 8300000, guid: 1f23b2760cbfc8749b2fdf66e1f90420, type: 3}
+  - {fileID: 8300000, guid: 174663039101ce64b89127535a1a7376, type: 3}
+  - {fileID: 8300000, guid: 1fbd315a22894fa4ab9ca2e7c69eb46b, type: 3}
+  - {fileID: 8300000, guid: ea80bb4fb26dc9b469329742dc9d9eb5, type: 3}
+  - {fileID: 8300000, guid: b775243fe9a02b346a2342d54ce016fd, type: 3}
+  - {fileID: 8300000, guid: 6b25f2dbbdac76c4495ae1961a3878cd, type: 3}
+  - {fileID: 8300000, guid: 2bc11e9b9846fde4daf53b442bd36884, type: 3}

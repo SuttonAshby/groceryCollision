@@ -139,6 +139,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Pasta
+  sounds:
+  - {fileID: 8300000, guid: 06b13c9ef4bd038479da9db5d53c7e9f, type: 3}
+  - {fileID: 8300000, guid: 8ef7e121496a10e46a64f0493e402a1f, type: 3}
+  - {fileID: 8300000, guid: 7facf139af9271047a6dd978d3f7efde, type: 3}
+  - {fileID: 8300000, guid: 9620520b7bbf2b84cb0171bad77d45da, type: 3}
+  - {fileID: 8300000, guid: a0359241e1ecf444cb4d8141f8ad9961, type: 3}
+  - {fileID: 8300000, guid: 128c3b6d6c9e2424e88caad8c80836f0, type: 3}
+  - {fileID: 8300000, guid: adca7d8859caf944391fafc68025be48, type: 3}
+  - {fileID: 8300000, guid: 24c7c9f85a7ecff4497e6bb6543c90a3, type: 3}
+  - {fileID: 8300000, guid: f97f9563bd36f824db369ee7a8ce6114, type: 3}
+  - {fileID: 8300000, guid: 12e95e1e707d5084a9f440d6c6c44bde, type: 3}
+  - {fileID: 8300000, guid: a71dc7a7e517baf429a50620f95effb0, type: 3}
 --- !u!54 &1595511181984890988
 Rigidbody:
   m_ObjectHideFlags: 0

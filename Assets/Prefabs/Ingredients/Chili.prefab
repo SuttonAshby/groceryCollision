@@ -46,6 +46,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Chili
+  sounds:
+  - {fileID: 8300000, guid: 64f7c40e120502145b24c64b02c221ed, type: 3}
+  - {fileID: 8300000, guid: 9aa8df0858a18a349bc70e74858f1d16, type: 3}
+  - {fileID: 8300000, guid: a1b96fb7f114bc4408e099a3077c1282, type: 3}
+  - {fileID: 8300000, guid: 74516eb3f40b1464bad472c094260d57, type: 3}
+  - {fileID: 8300000, guid: 9fd22d9f1b550b24dae29ce59e0dc2a1, type: 3}
+  - {fileID: 8300000, guid: 94f7cc091bdbb3d43b24e8c0fdac499d, type: 3}
+  - {fileID: 8300000, guid: 90f04111b8dfa46458d189d79f004547, type: 3}
+  - {fileID: 8300000, guid: 08be9f8f757084c48b8ab39857243e42, type: 3}
+  - {fileID: 8300000, guid: 564fe8b0d6140284485f46671fe96760, type: 3}
+  - {fileID: 8300000, guid: 2d5c2126973a0a345aafea9e21c21874, type: 3}
+  - {fileID: 8300000, guid: ed5553302a81d6a47b749997466853d2, type: 3}
+  - {fileID: 8300000, guid: 84a92a094cf0227419e5e9f8c647a9c9, type: 3}
+  - {fileID: 8300000, guid: e13abf89d18c0444183e9ad5f5d3a283, type: 3}
+  - {fileID: 8300000, guid: 11f0b0811077df246abebbc33d69e8cf, type: 3}
+  - {fileID: 8300000, guid: 91abfa7e01763d14296b0b4589764560, type: 3}
+  - {fileID: 8300000, guid: a89bb846983361d439b03933174f8b65, type: 3}
+  - {fileID: 8300000, guid: 8677e09563a74934d8839ced747e616b, type: 3}
+  - {fileID: 8300000, guid: 9cfeda4488276af4f83343f369bd9a6f, type: 3}
+  - {fileID: 8300000, guid: 04ccc44b0690d5d46966b097af3bd512, type: 3}
+  - {fileID: 8300000, guid: f6307130496cdcb4e81e5338699cd748, type: 3}
+  - {fileID: 8300000, guid: 7535841a17dbda14bb6d41e0d89e8f33, type: 3}
+  - {fileID: 8300000, guid: dfb73f42540aea24fbbb9161ecec76be, type: 3}
 --- !u!54 &8883127279647209560
 Rigidbody:
   m_ObjectHideFlags: 0
