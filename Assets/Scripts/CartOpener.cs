@@ -7,11 +7,13 @@ public class CartOpener : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (Input.touchCount > 0) return;
         cart.Extend();
     }
 
     private void OnMouseUp()
     {
+        if (Input.touchCount > 0) return;
         cart.Retract();
     }
 
