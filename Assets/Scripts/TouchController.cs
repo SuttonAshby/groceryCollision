@@ -10,7 +10,9 @@ public class TouchController : MonoBehaviour
 
     private class TouchedObject
     {
-        public GameObject gameObject;
+        public GameObject obj;
+        public Rigidbody rigidbody;
+        public Ingredient ingredient;
         public Vector2 averageVelocity = Vector3.zero;
 
         private float averageWeightingFactor = 0.33f;
@@ -54,29 +56,29 @@ public class TouchController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.rigidbody == null) return;
-            var gameObject = hit.rigidbody.gameObject;
+            var rb = hit.rigidbody;
+            if (rb == null) return;
+
+            var ingredient = rb.gameObject.GetComponent<Ingredient>();
+            if (ingredient == null) return;
+            if (!ingredient.CanHold()) return;
+
             gameObjectsByFinger.Add(touch.fingerId, new TouchedObject()
             {
-                gameObject = gameObject
+                obj = hit.rigidbody.gameObject,
+                rigidbody = rb,
+                ingredient = ingredient
             });
 
-            var cart = gameObject.GetComponent<Cart>();
-            if (cart != null)
-            {
-                cart.Extend();
-            }
-            else
-            {
-                var ingredient = gameObject.GetComponent<Ingredient>();
-                if (ingredient == null) return;
-                if (!ingredient.CanHold()) return;
-
-                ingredient.Hold();
-                hit.rigidbody.useGravity = false;
-                hit.rigidbody.isKinematic = true;
-                gameObject.transform.DOMoveY(holdHeight, 0.1f);
-            }
+            ingredient.Hold();
+            hit.rigidbody.useGravity = false;
+            hit.rigidbody.isKinematic = true;
+            var dest = Camera.main.ScreenToWorldPoint(new Vector3(
+                Input.mousePosition.x,
+                Input.mousePosition.y,
+                Camera.main.transform.position.y - holdHeight
+            ));
+            rb.DOMove(dest, 0.1f);
         }
     }
 
@@ -84,40 +86,29 @@ public class TouchController : MonoBehaviour
     {
         ForTouchedObject(touch, (touchedObject, fingerId) =>
         {
-            var gameObject = touchedObject.gameObject;
-            var cart = gameObject.GetComponent<Cart>();
-            if (cart != null)
-            {
-                if (!IsTouchOverObject(touch, gameObject))
-                {
-                    cart.Retract();
-                    gameObjectsByFinger.Remove(fingerId);
-                }
-            }
-            else
-            {
-                if (touchedObject.gameObject.GetComponent<Rigidbody>() == null)
-                {
-                    gameObjectsByFinger.Remove(fingerId);
-                    return;
-                }
-                touchedObject.TrackVelocity(touch);
-                var touchPoint = Camera.main.ScreenToWorldPoint(new Vector3(
-                    touch.position.x,
-                    touch.position.y,
-                    Camera.main.transform.position.y - holdHeight
-                ));
-                gameObject.transform.position = touchPoint;
+            var obj = touchedObject.obj;
 
-                var rotation = Quaternion.identity;
-                if (touch.deltaPosition.x > 0)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-                }
-                else if (touch.deltaPosition.x < 0)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
-                }
+            if (touchedObject.obj.GetComponent<Rigidbody>() == null)
+            {
+                gameObjectsByFinger.Remove(fingerId);
+                return;
+            }
+            touchedObject.TrackVelocity(touch);
+            var touchPoint = Camera.main.ScreenToWorldPoint(new Vector3(
+                touch.position.x,
+                touch.position.y,
+                Camera.main.transform.position.y - holdHeight
+            ));
+            touchedObject.rigidbody.MovePosition(touchPoint);
+
+            var rotation = Quaternion.identity;
+            if (touch.deltaPosition.x > 0)
+            {
+                touchedObject.rigidbody.MoveRotation(Quaternion.Euler(0, 90, 0));
+            }
+            else if (touch.deltaPosition.x < 0)
+            {
+                touchedObject.rigidbody.MoveRotation(Quaternion.Euler(0, -90, 0));
             }
         });
     }
@@ -133,31 +124,20 @@ public class TouchController : MonoBehaviour
     {
         ForTouchedObject(touch, (touchedObject, fingerId) =>
         {
-            var gameObject = touchedObject.gameObject;
-            var cart = gameObject.GetComponent<Cart>();
-            if (cart != null)
-            {
-                cart.Retract();
-                gameObjectsByFinger.Remove(fingerId);
-            }
-            else
-            {
-                gameObjectsByFinger.Remove(fingerId);
+            var obj = touchedObject.obj;
+            gameObjectsByFinger.Remove(fingerId);
+            touchedObject.ingredient.Release();
 
-                gameObject.GetComponent<Ingredient>().Release();
+            touchedObject.rigidbody.useGravity = true;
+            touchedObject.rigidbody.isKinematic = false;
 
-                var rigidbody = gameObject.GetComponent<Rigidbody>();
-                rigidbody.useGravity = true;
-                rigidbody.isKinematic = false;
+            var velocityVector = touchedObject.averageVelocity * flingVelocityFactor;
 
-                var velocityVector = touchedObject.averageVelocity * flingVelocityFactor;
-
-                rigidbody.AddForce(new Vector3(
-                    velocityVector.x,
-                    rigidbody.velocity.y,
-                    velocityVector.y
-                ));
-            }
+            touchedObject.rigidbody.AddForce(new Vector3(
+                velocityVector.x,
+                touchedObject.rigidbody.velocity.y,
+                velocityVector.y
+            ));
         });
     }
 
