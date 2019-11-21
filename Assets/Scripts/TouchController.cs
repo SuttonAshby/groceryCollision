@@ -74,8 +74,8 @@ public class TouchController : MonoBehaviour
             hit.rigidbody.useGravity = false;
             hit.rigidbody.isKinematic = true;
             var dest = Camera.main.ScreenToWorldPoint(new Vector3(
-                Input.mousePosition.x,
-                Input.mousePosition.y,
+                touch.position.x,
+                touch.position.y,
                 Camera.main.transform.position.y - holdHeight
             ));
             rb.DOMove(dest, 0.1f);
