@@ -7,12 +7,18 @@ public class CartOpener : MonoBehaviour
 
     private void OnMouseDown()
     {
+#if !UNITY_EDITOR
+        return;
+#endif
         if (Input.touchCount > 0) return;
         cart.Extend();
     }
 
     private void OnMouseUp()
     {
+#if !UNITY_EDITOR
+        return;
+#endif
         if (Input.touchCount > 0) return;
         cart.Retract();
     }
