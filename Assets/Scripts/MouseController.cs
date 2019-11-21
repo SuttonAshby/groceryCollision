@@ -65,6 +65,8 @@ public class MouseController : MonoBehaviour
 
     private void MouseDown(GameObject obj)
     {
+        if (Input.touchCount > 0) return;
+
         var rb = obj.GetComponent<Rigidbody>();
         if (rb == null) return;
 
@@ -94,6 +96,8 @@ public class MouseController : MonoBehaviour
 
     private void MouseDrag(GameObject obj)
     {
+        if (Input.touchCount > 0) return;
+
         if (_heldObject == null) return;
         if (_heldObject.colliderGameObject != obj) return;
 
@@ -124,6 +128,8 @@ public class MouseController : MonoBehaviour
 
     private void MouseUp(GameObject obj)
     {
+        if (Input.touchCount > 0) return;
+
         if (_heldObject == null) return;
         if (_heldObject.colliderGameObject != obj) return;
 
