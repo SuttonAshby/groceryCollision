@@ -53,7 +53,7 @@ MonoBehaviour:
   player2Recipes: {fileID: 11400000, guid: 91652983c995f438bb9213c3f62b47af, type: 2}
   playerItemPrefabs: {fileID: 11400000, guid: 60caefe4c3cec4f8ba6c5f6069311372, type: 2}
   includeChance: 0.75
-  inclusionLoops: 2
+  inclusionLoops: 3
 --- !u!1 &3897682596079825789
 GameObject:
   m_ObjectHideFlags: 0
