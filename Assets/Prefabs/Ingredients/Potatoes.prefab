@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8861c286d9702c641ab3e0a79bfbfa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Apples
+  id: Potatoes
   sounds:
   - {fileID: 8300000, guid: f4cf4f9a96c38f347b4a02f4c2d080bb, type: 3}
   - {fileID: 8300000, guid: 15ffdfdc93b93cd42a2d50d382b4f31e, type: 3}
